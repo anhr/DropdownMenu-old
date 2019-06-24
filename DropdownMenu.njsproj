@@ -29,6 +29,7 @@
     <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
   <ItemGroup>
+    <Content Include="Examples\html\custom.css" />
     <Content Include="Examples\html\index.html" />
     <Content Include="Examples\module\build\treeElementExample.js" />
     <Content Include="Examples\module\build\treeElementExample.js.map" />
@@ -44,11 +45,14 @@
     <Content Include="Examples\module\URL.txt" />
     <Content Include="index.js" />
     <Content Include="licenseBanner.txt" />
-    <Content Include="menu.css" />
     <Content Include="package.json" />
     <Content Include="README.md" />
     <Content Include="rollup.config.js" />
     <Content Include="rollup.config.min.js" />
+    <Content Include="styles\Decorations\default.css" />
+    <Content Include="styles\Decorations\gradient.css" />
+    <Content Include="styles\Decorations\transparent.css" />
+    <Content Include="styles\menu.css" />
     <Content Include="URL.txt" />
   </ItemGroup>
   <ItemGroup>
@@ -56,6 +60,8 @@
     <Folder Include="Examples\html\" />
     <Folder Include="Examples\module\" />
     <Folder Include="Examples\module\build\" />
+    <Folder Include="styles\" />
+    <Folder Include="styles\Decorations\" />
   </ItemGroup>
   <Import Project="$(VSToolsPath)\Node.js Tools\Microsoft.NodejsToolsV2.targets" />
   <ProjectExtensions>

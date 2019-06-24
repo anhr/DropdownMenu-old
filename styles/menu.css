@@ -1,0 +1,56 @@
+﻿.container {
+    /*
+    height: 400px;
+	width: 400px;
+    */
+    position: relative;
+}
+.controls {
+    bottom: 0;
+    left: 0;
+    position: absolute;
+    width: 100%;
+    opacity: 1;
+    transition: opacity 0.5s;
+}
+menu {
+    margin: 0;
+    padding: 0;
+}
+.menuButton {
+    color: white;
+    background-color: black;
+    position: relative;
+    cursor: pointer;
+}
+    .menuButton:hover {
+        color: black;
+        background-color: white;
+    }
+        .menuButton:hover > .dropdown-child {
+            display: block;
+            opacity: 1;
+        }
+
+.right {
+    float: right;
+}
+/*https://www.hostinger.ru/rukovodstva/kak-sozdat-vipadauyshee-menu-css*/
+.dropdown-child {
+    display: none; /*block;*/
+    opacity: 0;
+    position: absolute;
+    /*width: auto;*/
+}
+    .dropdown-child nobr {
+        color: white;
+        background-color: black;
+        /*opacity: 1;*/ /*0.5;полупрозрачный невыбранный элемент выпадающего меню*/
+        text-decoration: none;
+        display: block;
+    }
+        .dropdown-child nobr:hover {
+            color: black;
+            background-color: white;
+            /*opacity: 1;*/
+        }

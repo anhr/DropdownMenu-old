@@ -248,6 +248,22 @@ function async(src, options) {
 }
 function loadScriptBase(callback, options) {
 	options.tag = options.tag || {};
+	if (typeof options.tag === "string") {
+		switch (options.tag) {
+			case 'style':
+				options.tag = {
+					name: 'style',
+					attribute: {
+						name: 'rel',
+						value: 'stylesheet'
+					}
+				};
+				break;
+			default:
+				console.error('Invalid options.tag: ' + options.tag);
+				return;
+		}
+	}
 	options.tag.name = options.tag.name || 'script';
 	var script = document.createElement(options.tag.name);
 	options.tag.attribute = options.tag.attribute || {};
@@ -274,48 +290,112 @@ var loadScript = {
   async: async
 };
 
-loadScript.sync('../../menu.css', {
-	tag: {
-		name: 'style',
-		attribute: {
-			name: 'rel',
-			value: 'stylesheet'
-		}
-	}
-});
+var optionsStyle = {
+	tag: 'style'
+};loadScript.sync('../../styles/menu.css', optionsStyle);
+loadScript.sync('../../styles/Decorations/transparent.css', optionsStyle);
+loadScript.sync('../../styles/Decorations/gradient.css', optionsStyle);
 function create(arrayMenu, options) {
 	options = options || {};
-	options.elContainer = options.elContainer || document.createElement('div');
-	if (options.elContainer.className === '') options.elContainer.className = 'container';
-	if (options.id !== undefined) options.elContainer.id = options.id;
 	options.elParent = options.elParent || document.querySelector('body');
 	var elMenu = document.createElement('menu');
-	elMenu.className = 'controls';
+	if (options.elParent.classList.contains("container")) elMenu.className = 'controls';
 	if (options.menu) {
 		if (options.menu.onmouseout) elMenu.onmouseout = options.menu.onmouseout;
 		if (options.menu.onmousemove) elMenu.onmousemove = options.menu.onmousemove;
 		if (options.menu.onmouseout) elMenu.onmouseout = options.menu.onmouseout;
 	}
+	function displayControls() {
+		elMenu.style.opacity = 1;
+		clearTimeout(timeoutControls);
+		timeoutControls = setTimeout(function () {
+			elMenu.style.opacity = 0;
+		}, 5000);
+	}
+	if (options.canvas) {
+		elMenu.style.opacity = 0;
+		options.canvas.onmouseout = function (event) {
+			elMenu.style.opacity = 0;
+		};
+		options.canvas.onmousemove = function (event) {
+			displayControls();
+		};
+		elMenu.onmousemove = function (event) {
+			displayControls();
+		};
+	}
+	options.elParent.appendChild(elMenu);
 	arrayMenu.forEach(function (menuItem) {
+		var dropdownChild = 'dropdown-child';
 		var elSpan = document.createElement('span');
+		function moveUpLeft(drop) {
+			setTimeout(function () {
+				var display = elDropdownChild.style.display;
+				elDropdownChild.style.display = 'block';
+				if (drop.up) elDropdownChild.style.top = '-' + elDropdownChild.offsetHeight                    + 'px';else elDropdownChild.style.top = elMenuButton.offsetHeight                          - 1 + 'px';
+				if (drop.left) elDropdownChild.style.left = elMenuButton.offsetWidth - elDropdownChild.offsetWidth                    + 'px';
+				elDropdownChild.style.display = display;
+			}, 0);
+		}
 		var elMenuButton = document.createElement('span');
-		elMenuButton.className = 'menuButton';
+		elMenuButton.className = 'menuButton' + (
+		options.decorations === undefined ? '' : ' menuButton' + options.decorations) + (menuItem.right ? ' right' : '');
+		if (menuItem.onclick !== undefined) elMenuButton.onclick = menuItem.onclick;
+		if (menuItem.id !== undefined) elMenuButton.id = menuItem.id;
+		elSpan.appendChild(elMenuButton);
 		var name;
 		if (typeof menuItem === 'string') name = menuItem;else {
 			name = menuItem.name;
 			if (menuItem.id) elMenuButton.id = menuItem.id;
 			if (menuItem.title) elMenuButton.title = menuItem.title;
-			if (menuItem.onmouseover) elMenuButton.onmouseover = menuItem.onmouseover;
-			if (menuItem.onmouseout) elMenuButton.onmouseout = menuItem.onmouseout;
 		}
 		var elName = document.createElement('span');
 		elName.innerHTML = name;
 		elMenuButton.appendChild(elName);
-		elSpan.appendChild(elMenuButton);
+		if (menuItem.items) {
+			var elDropdownChild = document.createElement('span');
+			elDropdownChild.className = dropdownChild + ' ' + dropdownChild + (options.decorations === undefined ? 'Default' : options.decorations);
+			elDropdownChild.title = '';
+			elMenuButton.appendChild(elDropdownChild);
+			menuItem.items.forEach(function (itemItem) {
+				var elName = document.createElement('nobr');
+				var name;
+				if (typeof itemItem === 'string') name = itemItem;else {
+					name = itemItem.name;
+					if (itemItem.onclick) elName.onclick = function (event) {
+						itemItem.onclick(event);
+					};
+				}
+				elName.innerHTML = name;
+				elDropdownChild.appendChild(elName);
+			});
+			if (typeof menuItem.drop === 'object') {
+				moveUpLeft(menuItem.drop);
+			} else {
+				switch (menuItem.drop) {
+					case 'up':
+						moveUpLeft({
+							up: true
+						});
+						break;
+					case 'left':
+						moveUpLeft({
+							left: true
+						});
+						break;
+					case undefined:
+						setTimeout(function () {
+							elDropdownChild.style.left = '-' + elMenuButton.clientWidth + 'px';
+							elDropdownChild.style.top = elMenuButton.offsetHeight                                   - 1 + 'px';
+						}, 0);
+						break;
+					default:
+						console.error('Invalid menuItem.drop: ' + menuItem.drop);
+				}
+			}
+		}
 		elMenu.appendChild(elSpan);
 	});
-	options.elContainer.appendChild(elMenu);
-	options.elParent.appendChild(options.elContainer);
 }
 
 exports.create = create;
