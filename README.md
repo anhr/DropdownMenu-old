@@ -39,7 +39,7 @@ Creates new menu.
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
-| arrayMenu | <code>String[]|Object[]</code> |  | array of menu and submenu items. If string then menu item name. If object then options of the new menu item:
+| arrayMenu | <code>String[] or Object[]</code> |  | array of menu and submenu items. If string then menu item name. If object then options of the new menu item:
  * name - menu item name. Optional.
  * items - array of submenu items. Same as menu item. Optional.
  * onclick - function(event) called when user has clicked a menu item. event - event details. Optional.
