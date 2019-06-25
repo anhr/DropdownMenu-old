@@ -31,16 +31,13 @@ Creates new menu.
 | [arrayMenuItem.drop] | <code>String or Object</code> |  | direction of drop of the submenu. Following directions is available: If string then "up" - drop submenu to up. "left" - shift submenu to left. If object then following members is available: "up: true" and "left: true". |
 |  |  |  |  |
 | [options] | <code>Object</code> |  | Optional. Followed options is available: |
-| [options.elParent] | <code>HTMLElement</code> | "body" element | Parent element of new menu. Optional. Default is "body" element. |
+| [options.elParent] | <code>HTMLElement</code> | "body" element | Parent element of new menu. Optional. |
   [options.canvas] | <code>HTMLElement</code> |  | canvas element. Use if you want put a menu inside a canvas. See "button inside canvas" example below for details. Optional. |
 | [options.decorations] | <code>String</code> |  | Optional. You can decorate your menu by a built-in style or use your custom style. Currently two built-in styles is available: |
-|  | <code></code> | 'Gradient' | use gradient.css file for decoration. |
- * 'Transparent' - use transparent.css file for decoration.
-| [options] | <code></code> |  |  |
- * Custom decoration:
-| [options] | <code></code> |  |  |
- * 'Custom' please edit the custom.css file from my example if you want a custom decoration of your menu.
-| [options] | <code></code> |  |  |
+|  | <code>String</code> | 'Gradient' | use gradient.css file for decoration. |
+|  | <code>String</code> | 'Transparent' | use transparent.css file for decoration. |
+|  |  |  | Custom decoration: |
+|  | <code>String</code> | 'Custom' | please edit the custom.css file from my example if you want a custom decoration of your menu. |
 
 **Example. Simple tree.**  
 ```
