@@ -39,178 +39,172 @@ Creates new menu.
 |  |  |  | Custom decoration: |
 |  | <code>String</code> | 'Custom' | please edit the custom.css file from my example if you want a custom decoration of your menu. |
 
-**Example. Simple tree.**  
+**Example. Simple menu.**  
 ```
-<div id="SimpleTree"></div>
-<script type="text/javascript">
-	document.getElementById( "SimpleTree" ).appendChild( myTreeView.createBranch( {
-		name: "Simple Tree",
-		params:
+<script>
+dropdownMenu.create( [
+
+	'Menu 1 ',
+	{
+
+		name: 'Menu 2 ',
+		items: [
+
+			'Item 2.1',
+			{
+				name: 'Item 2.2',
+				onclick: function ( event ) {
+
+					var message = 'Item 2.2 onclick';
+					//console.log( message );
+					alert( message )
+
+				}
+			},
+
+		],
+
+	},
+	{
+
+		name: 'Menu 3',
+		onclick: function ( event ) {
+
+			var message = 'Menu 3 onclick';
+			//console.log( message );
+			alert( message )
+
+		},
+
+	},
+
+] );
+</script>
+```
+
+**Example. Drop menu to the left or/and up.**  
+```
+<script>
+dropdownMenu.create( [
+
+	{
+
+		name: 'Drop up',
+		drop: 'up',
+		items: [
+
+			'up item 1',
+			{
+				name: 'up item 2',
+				onclick: function ( event ) {
+
+					var message = 'up item 2 onclick';
+					//console.log( message );
+					alert( message )
+
+				}
+			},
+
+		],
+
+	},
+	{
+
+		name: 'Left',
+		drop: 'left',
+		items: [
+
+			'left item 1',
+			{
+				name: 'left item 2',
+				onclick: function ( event ) {
+
+					var message = 'left item 2 onclick';
+					//console.log( message );
+					alert( message )
+
+				}
+			},
+
+		],
+
+	},
+	{
+
+		name: 'Up left',
+		drop:
 		{
-			createBranch: function () {
-				var el = document.createElement( "div" );
-				el.innerText = "Branch";
-				return el;
-			}
-		}
-	} ) );
+
+			left: true,
+			up: true,
+
+		},
+		items: [
+
+			'up left item 1',
+			{
+				name: 'up left item 2',
+				onclick: function ( event ) {
+
+					var message = 'up left item 2 onclick';
+					//console.log( message );
+					alert( message )
+
+				}
+			},
+
+		],
+
+	},
+
+], {
+
+		decorations: 'Gradient',
+
+	} );
 </script>
 ```
 
-**Example. Open branch and close branch events.**  
+**Example. Button inside canvas.**  
 ```
-<div id="SimpleTree2"></div>
-<script type="text/javascript">
-	document.getElementById( "SimpleTree2" ).appendChild( myTreeView.createBranch( {
-		name: "Open Branch",
-		params:
-		{
-			noBranchLeft: true,
-			createBranch: function () {
-				var el = document.createElement( "div" );
-				el.innerText = "Branch";
-				return el;
-			},
-			onOpenBranch: function ( a ) { a.querySelector( ".name" ).innerText = "Close Branch"; },
-			onCloseBranch: function ( a ) { a.querySelector( ".name" ).innerText = "Open Branch"; }
-		}
-	} ) );
+<div class="container" id="containerDSE">
+	<canvas id="canvas"></canvas>
+</div>
+<script>
+var elContainer = document.getElementById( "containerDSE" ),
+elCanvas = elContainer.querySelector( 'canvas' );
+
+dropdownMenu.create( [
+
+	{
+
+		name: 'Button',
+		onclick: function ( event ) {
+
+			var message = 'Button onclick';
+			//console.log( message );
+			alert( message )
+
+		},
+
+	},
+
+], {
+
+	elParent: elContainer,
+	canvas: elCanvas,
+	decorations: 'Transparent',
+
+} );
 </script>
 ```
-
-### myTreeView.createTree( elTree, tree )
-
-Create tree.
-
-| Param | Type | Default | Description |
-| --- | --- | --- | --- |
-| elTree | <code>HTMLElement or string</code> |  | Parent element of the tree or class name of the new parent element. |
-| tree | <code>Object[]</code> |  | Array of branches. Each item of the tree array is options of the branch. |
-| [tree[].name] | <code>String</code> | "" | The name of the branch. |
-| [tree[].branch] | <code>String or HTMLElement or Function</code> |  | The name of the branch or branch element or function () - creates and returns the branch element. |
-| [tree[].animate] | <code>boolean</code> |  | true - animate of open/closing of the branch. |
-| [tree[].title] | <code>String</code> |  | The title of the tag of the branch. |
-| [tree[].tagName] | <code>String</code> | "div" | The name of the branch tag. |
-| [tree[].tree] | <code>Object[]</code> |  | Array of child branches. Each item of the tree array is options of the branch. |
-| [tree[].parentElement] | <code>String</code> |  | Id of the parentElement of the branch tag. A new branch can be not a child of the tree. Use the parentElement option if you want to create a branch anywhere on the web page. |
-| [tree[].file] | <code>String</code> |  | The path to HTML file with code of the branch element. |
-| [tree[].el] | <code>String</code> |  | The code of the branch element. |
-
-**Example. Create tree.**  
-```
-<div id="ComplexTree"></div>
-<script type="text/javascript">
-	myTreeView.createTree(
-		document.getElementById( "ComplexTree" ),
-		[
-			{
-				name: "Animate Branch",
-				branch: "branch 1",
-				animate: true,
-				tree: [
-					{
-						name: "tree 2.1",
-						animate: true,
-						tree: [
-							{
-								name: "tree 2.2",
-								branch: "branch 2.2",
-								animate: true
-							}
-						]
-					},
-					{
-						file: "branch1.html",
-					},
-					{
-						el: "<div>Branch from string</div>"
-					},
-				]
-			},
-			{
-				name: "Complex Tree 2",
-				branch: function () {
-					var el = document.createElement( "div" );
-					el.className = "branchLeft";
-					el.appendChild( document.createElement( "input" ) );
-					var elClose = document.createElement( "input" );
-					elClose.type = "button";
-					elClose.onclick = myTreeView.onclickCloseBranch;
-					elClose.value = "Close Branch";
-					el.appendChild( elClose );
-					return el;
-				},
-				title: "inline-element",
-				tagName: "span"
-			},
-			{
-				name: "Complex Tree 3",
-				branch: "branch 3",
-				title: "inline-element",
-				tagName: "span"
-			},
-		]
-	);
-</script>
-```
-
-### myTreeView.onclickBranch( a )
-
-User has clicked a branch event.
-
-| Param | Type | Default | Description |
-| --- | --- | --- | --- |
-| a | <code>HTMLElement</code> |  | The branch the user clicked on. |
-
-### myTreeView.onclickCloseBranch( event )
-
-User has closed a branch event.
-
-| Param | Type | Default | Description |
-| --- | --- | --- | --- |
-| event | <code>event</code> |  | event. |
-
-### myTreeView.onCloseBranchAnywhere( event )
-
-User has closed a branch event.
-
-| Param | Type | Default | Description |
-| --- | --- | --- | --- |
-| event | <code>event</code> |  | event. |
-
-### myTreeView.AddNewBranch( elTree, branch )
-
-Adds a new branch to the tree.
-
-| Param | Type | Default | Description |
-| --- | --- | --- | --- |
-| elTree | <code>string or HTMLElement</code> |  | id of the tree element or tree element to which the new branch will be added. |
-| branch | <code>Object</code> |  | New branch options. |
-| [branch.name] | <code>string</code> |  | The name of the branch. You can use a branch function instead branch name. |
-| [branch.branch] | <code>Function</code> |  | function () returns an element of the new branch. |
-| [branch.branchId] | <code>string</code> |  | Identifier of the new branch. Uses for find and remove branch. |
-
-### myTreeView.removeBranch( branchId, elTree )
-
-Removes a branch from the tree.
-
-| Param | Type | Default | Description |
-| --- | --- | --- | --- |
-| branchId | <code>string</code> |  | identifier of the branch for removing. See [myTreeView.AddNewBranch( elTree, branch )](#mytreeviewaddnewbranch-eltree-branch-) function for details. |
-| elTree | <code>HTMLElement</code> |  | The tree element from which the branch will be removed. |
-
-### myTreeView.removeAllBranches( elTree )
-
-Removes all branch from the tree.
-
-| Param | Type | Default | Description |
-| --- | --- | --- | --- |
-| elTree | <code>HTMLElement</code> |  | The tree element from which all branches will be removed. |
 
 ## Directory Contents
 
 ```
 └── build - Compiled source code.
+└── styles - Menu styles.
+└── Examples/html/ - Example.
 ```
 
 ## Building your own TreeElement
@@ -245,15 +239,16 @@ Windows 10
 
 Android 6.0.1
 
-	Chrome 74
+	Chrome 74 - Some very strange issues if you append into your web page three and more menus and include an elements between menus. Please see 
+		"Attention! Line below is not compatible with Android mobile version of the Chrome." comment in [index.html](https://github.com/anhr/DropdownMenu/blob/master/Examples/html/index.html) file for more details.
 
-	Samsung Galaxy S5 Internet 9.2
+	Samsung Galaxy S5 Internet 9.2 - Same issues as Chrome
 
 	FireFox 67
 
 	Opera 52
 
-	Opera Mini 43
+	Opera Mini 43 - Same issues as Chrome
 
 LG Smart tv
 
@@ -261,9 +256,10 @@ LG Smart tv
 
 
 ## Thanks
-The following libraries / open-source projects were used in the development of customController:
+The following libraries / open-source projects were used in the development of DropdownMenu:
  * [Rollup](https://rollupjs.org)
  * [Node.js](http://nodejs.org/)
+ * [three.js](https://threejs.org/)
 
  ## Have a job for me?
 Please read [About Me](https://anhr.github.io/AboutMe/).
