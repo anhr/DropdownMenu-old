@@ -207,7 +207,7 @@ dropdownMenu.create( [
 └── Examples/html/ - Example.
 ```
 
-## Building your own TreeElement
+## Building your own DropdownMenu
 
 In the terminal, enter the following:
 
@@ -240,7 +240,9 @@ Windows 10
 Android 6.0.1
 
 	Chrome 74 - Some very strange issues if you append into your web page three and more menus and include an elements between menus. Please see 
-		"Attention! Line below is not compatible with Android mobile version of the Chrome." comment in [index.html](https://github.com/anhr/DropdownMenu/blob/master/Examples/html/index.html) file for more details.
+		"Attention! Line below is not compatible with Android mobile version of the Chrome."
+		comment in [index.html](https://github.com/anhr/DropdownMenu/blob/master/Examples/html/index.html) file for more details.
+		[three.js](https://threejs.org/)
 
 	Samsung Galaxy S5 Internet 9.2 - Same issues as Chrome
 
