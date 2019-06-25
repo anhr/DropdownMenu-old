@@ -22,21 +22,6 @@ Now you can use window.dropdownMenu for append your dropdown menu into your web 
 
 Creates new menu.
 
-* 
- * @param {String[]|Object[]} arrayMenu array of menu and submenu items. If string then menu item name. If object then options of the new menu item:
- * name - menu item name. Optional.
- * items - array of submenu items. Same as menu item. Optional.
- * onclick - function(event) called when user has clicked a menu item. event - event details. Optional.
- * drop - direction of drop of the submenu. Following directions is available: If string then "up" - drop submenu to up. "left" - shift submenu to left. If object then following members is available: "up: true" and "left: true".
- * @param {Object} [options] followed options is available. Optional.
- * @param {HTMLElement} [options.elParent] Parent element of new menu. Optional. Default is "body" element.
- * @param {HTMLElement} [options.canvas] canvas element. Use if you want put a menu inside a canvas. See "button inside canvas" example below for details. Optional.
- * @param {String} [options.decorations] Optional. You can decorate your menu by a built-in style or use your custom style. Currently two built-in styles is available:
- * 'Gradient' - use gradient.css file for decoration.
- * 'Transparent' - use transparent.css file for decoration.
- * Custom decoration:
- * 'Custom' please edit the custom.css file from my example if you want a custom decoration of your menu.
-
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
 | arrayMenu | <code>String[] or Object[]</code> |  | array of menu and submenu items. If string then menu item name. If object then options of the new menu item:|
@@ -44,25 +29,18 @@ Creates new menu.
 | [arrayMenuItem.items] | <code>Array</code> |  | array of submenu items. Same as menu item. Optional. |
 | [arrayMenuItem.onclick] | <code>Function</code> |  | function(event) called when user has clicked a menu item. event - event details. Optional. |
 | [arrayMenuItem.drop] | <code>String or Object</code> |  | direction of drop of the submenu. Following directions is available: If string then "up" - drop submenu to up. "left" - shift submenu to left. If object then following members is available: "up: true" and "left: true". |
-| options | <code>Object</code> |  | Followed options is available: |
-| [options.name] | <code>String</code> | "" | The name of the branch. |
-| [options.title] | <code>String</code> |  | The title of the tag of the TreeElement. |
-| [options.tagName] | <code>String</code> |  | The name of the branch tag. |
-| [options.className] | <code>String</code> |  | The className of branch tag. |
-| [options.id] | <code>String</code> |  | The id of branch tag. |
-| [options.treeViewTagName] | <code>String</code> | "span" | The name of tag of the TreeElement. |
 |  |  |  |  |
-| options.params | <code>Object</code> |  | Followed params is available: |
-| options.params.createBranch | <code>Function</code> |  | function (). creates and returns the branch element. |
-| [options.params.remember] | <code>String</code> |  | The name of the branch that was opened before closing the web page. This branch will be opened immediately after opening the web page. |
-| [options.params.noBranchLeft] | <code>boolean</code> |  | true - margin-left of the branch is 0 and not 10 pixels. |
-| [options.params.onOpenBranch] | <code>event</code> |  | function ( element ). event is user has opened a branch. element is the "treeView" class. |
-| [options.params.onCloseBranch] | <code>event</code> |  | function ( element ). event is user has closed a branch. element is the "treeView" class. |
-| [options.params.animate] | <code>boolean</code> |  | true - animate of open/closing of the branch. |
-| [options.params.branchId] | <code>String</code> |  | Identifier of the branch. |
-| [options.params.branch] | <code>String or Function</code> |  | The name of the branch or function () - creates and returns the branch element. |
-| [options.params.tree] | <code>Object[]</code> |  | Array of branches. Each item of the tree array is options of the branch. |
-| [options.params.scrollIntoView] | <code>boolean</code> |  | true - scroll the opened branch into the visible area of the browser window. |
+| [options] | <code>Object</code> |  | Optional. Followed options is available: |
+| [options.elParent] | <code>HTMLElement</code> | "body" element | Parent element of new menu. Optional. Default is "body" element. |
+  [options.canvas] | <code>HTMLElement</code> |  | canvas element. Use if you want put a menu inside a canvas. See "button inside canvas" example below for details. Optional. |
+| [options.decorations] | <code>String</code> |  | Optional. You can decorate your menu by a built-in style or use your custom style. Currently two built-in styles is available: |
+|  | <code></code> | 'Gradient' | use gradient.css file for decoration. |
+ * 'Transparent' - use transparent.css file for decoration.
+| [options] | <code></code> |  |  |
+ * Custom decoration:
+| [options] | <code></code> |  |  |
+ * 'Custom' please edit the custom.css file from my example if you want a custom decoration of your menu.
+| [options] | <code></code> |  |  |
 
 **Example. Simple tree.**  
 ```
