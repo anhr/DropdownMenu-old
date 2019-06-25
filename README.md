@@ -39,11 +39,11 @@ Creates new menu.
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
-| arrayMenu | <code>String[] or Object[]</code> |  | array of menu and submenu items. If string then menu item name. If object then options of the new menu item:
- * name - menu item name. Optional.
- * items - array of submenu items. Same as menu item. Optional.
- * onclick - function(event) called when user has clicked a menu item. event - event details. Optional.
- * drop - direction of drop of the submenu. Following directions is available: If string then "up" - drop submenu to up. "left" - shift submenu to left. If object then following members is available: "up: true" and "left: true". |
+| arrayMenu | <code>String[] or Object[]</code> |  | array of menu and submenu items. If string then menu item name. If object then options of the new menu item:|
+| [arrayMenuItem.name] | <code>String</code> | "" | menu item name. Optional. |
+| [arrayMenuItem.items] | <code>Array</code> |  | array of submenu items. Same as menu item. Optional. |
+| [arrayMenuItem.onclick] | <code>Function</code> |  | function(event) called when user has clicked a menu item. event - event details. Optional. |
+| [arrayMenuItem.drop] | <code>String or Object</code> |  | direction of drop of the submenu. Following directions is available: If string then "up" - drop submenu to up. "left" - shift submenu to left. If object then following members is available: "up: true" and "left: true". |
 | options | <code>Object</code> |  | Followed options is available: |
 | [options.name] | <code>String</code> | "" | The name of the branch. |
 | [options.title] | <code>String</code> |  | The title of the tag of the TreeElement. |
