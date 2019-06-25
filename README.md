@@ -9,40 +9,41 @@ The easiest way to use DropdownMenu in your code is by using the built source at
 
 In your `head` tag, include the following code:
 ```
-<link rel="stylesheet" href="https://anhr.github.io/DropdownMenu/menu.css" type="text/css">
-```
-then
-```
 <script src="https://raw.githack.com/anhr/DropdownMenu/master/build/dropdownMenu.js"></script>
 ```
 or
 ```
 <script src="https://raw.githack.com/anhr/DropdownMenu/master/build/dropdownMenu.min.js"></script>
 ```
-or you can import dropdownMenu from dropdownmenu.js file in your JavaScript module. [Example.](https://raw.githack.com/anhr/DropdownMenu/master/Examples/module/) [Code of example.](https://github.com/anhr/DropdownMenu/master/Examples/module)
-```
-import dropdownMenu from 'dropdownmenu.js';
-```
 
 Now you can use window.dropdownMenu for append your dropdown menu into your web page.
 
-* [myTreeView.createBranch( options )](#mytreeviewcreatebranch-options-) Create tree branch.
-* [myTreeView.createTree( elTree, tree )](#mytreeviewcreatetree-eltree-tree-) Create tree.
-* [myTreeView.onclickBranch( a )](#mytreeviewonclickbranch-a-) User has clicked a branch event.
-* [myTreeView.onclickCloseBranch( event )](#mytreeviewonclickclosebranch-event-) User has closed a branch event.
-* [myTreeView.onCloseBranchAnywhere( event )](#mytreeviewonclosebranchanywhere-event-) User has closed a branch event.
-* [myTreeView.AddNewBranch( elTree, branch )](#mytreeviewaddnewbranch-eltree-branch-) Adds a new branch to the tree.
-* [myTreeView.removeBranch( branchId, elTree )](#mytreeviewremovebranch-branchid-eltree-) Removes a branch from the tree.
-* [myTreeView.removeAllBranches( elTree )](#mytreeviewremoveallbranches-eltree-) Removes all branch from the tree.
+### dropdownMenu.create( arrayMenu, options )
 
-### myTreeView.createBranch( options )
+Creates new menu.
 
-Create tree branch.
-
-**Returns**: <code>HTMLElement</code> - the tree branch element.
+* 
+ * @param {String[]|Object[]} arrayMenu array of menu and submenu items. If string then menu item name. If object then options of the new menu item:
+ * name - menu item name. Optional.
+ * items - array of submenu items. Same as menu item. Optional.
+ * onclick - function(event) called when user has clicked a menu item. event - event details. Optional.
+ * drop - direction of drop of the submenu. Following directions is available: If string then "up" - drop submenu to up. "left" - shift submenu to left. If object then following members is available: "up: true" and "left: true".
+ * @param {Object} [options] followed options is available. Optional.
+ * @param {HTMLElement} [options.elParent] Parent element of new menu. Optional. Default is "body" element.
+ * @param {HTMLElement} [options.canvas] canvas element. Use if you want put a menu inside a canvas. See "button inside canvas" example below for details. Optional.
+ * @param {String} [options.decorations] Optional. You can decorate your menu by a built-in style or use your custom style. Currently two built-in styles is available:
+ * 'Gradient' - use gradient.css file for decoration.
+ * 'Transparent' - use transparent.css file for decoration.
+ * Custom decoration:
+ * 'Custom' please edit the custom.css file from my example if you want a custom decoration of your menu.
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
+| arrayMenu | <code>String[]|Object[]</code> |  | array of menu and submenu items. If string then menu item name. If object then options of the new menu item:
+ * name - menu item name. Optional.
+ * items - array of submenu items. Same as menu item. Optional.
+ * onclick - function(event) called when user has clicked a menu item. event - event details. Optional.
+ * drop - direction of drop of the submenu. Following directions is available: If string then "up" - drop submenu to up. "left" - shift submenu to left. If object then following members is available: "up: true" and "left: true". |
 | options | <code>Object</code> |  | Followed options is available: |
 | [options.name] | <code>String</code> | "" | The name of the branch. |
 | [options.title] | <code>String</code> |  | The title of the tag of the TreeElement. |

@@ -16,34 +16,36 @@
 	<script src="https://raw.githack.com/anhr/three.js/dev/examples/js/WebGL.js"></script>
 	<script src="https://raw.githack.com/anhr/three.js/dev/examples/js/controls/OrbitControls.js"></script>
 	-->
+	<!--
 	<script src="../../../../three.js/dev/build/three.js"></script>
 	<script src="../../../../three.js/dev/examples/js/WebGL.js"></script>
 	<script src="../../../../three.js/dev/examples/js/controls/OrbitControls.js"></script>
-	<!--
+	-->
 	<script src="../../../threejs/three.js/build/three.js"></script>
 	<script src="../../../threejs/three.js/examples/js/WebGL.js"></script>
 	<script src="../../../threejs/three.js/examples/js/controls/OrbitControls.js"></script>
-	-->
+
 	<!--A lightweight graphical user interface for changing variables in JavaScript. https://github.com/dataarts/dat.gui -->
-	<script src="../../../../three.js/dev/examples/js/libs/dat.gui.js"></script>
-	<!--<script src="../../../threejs/three.js/examples/js/libs/dat.gui.js"></script>-->
+	<!--<script src="../../../../three.js/dev/examples/js/libs/dat.gui.js"></script>-->
+	<script src="../../../threejs/three.js/examples/js/libs/dat.gui.js"></script>
 	<!--<script src="js/libs/dat.gui.min.js"></script>-->
 	<!--<script src="../../dat.gui/build/dat.gui.min.js"></script>-->
 	<!--<script src="../../dat.gui/build/dat.gui.js"></script>-->
-	<!--
+
 	<script src="../../../threejs/three.js/examples/js/effects/StereoEffect.js"></script>
 	<script src="../../../threejs/three.js/src/objects/SpriteText.js"></script>
-	-->
+	<!--
 	<script src="../../../../three.js/dev/examples/js/effects/StereoEffect.js"></script>
 	<script src="../../../../three.js/dev/src/objects/SpriteText.js"></script>
+	-->
 
 	<!--Cube-->
-	<!--
 	<script src="../../../threejs/three.js/examples/js/geometries/ConvexGeometry.js"></script>
 	<script src="../../../threejs/three.js/examples/js/QuickHull.js"></script>
-	-->
+	<!--
 	<script src="../../../../three.js/dev/examples/js/geometries/ConvexGeometry.js"></script>
 	<script src="../../../../three.js/dev/examples/js/QuickHull.js"></script>
+	-->
 
 	<!--Attention! Load custom.css file after dropdownMenu.js file for correctly priority of the styles-->
 	<link rel="stylesheet" href="custom.css" type="text/css">
@@ -303,6 +305,7 @@
 		<a href="../../styles/Decorations/transparent.css" target="_blank"> Transparent decoration</a>.
 	</h2>
 	<!--<h3>Canvas</h3>-->
+	<p>Please move mouse over canvas. Now you can see "⚭" and "⤢" buttons on the bottom of the canvas.</p>
 
 	<div class="container" id="containerDSE">
 		<canvas id="canvas"></canvas>
@@ -353,11 +356,10 @@
 	], {
 
 		elParent: elContainer,
-		canvas: document.getElementById( 'canvas' ),
+		canvas: elCanvas,
 		decorations: 'Transparent',
 
 	} );
-
 
 	function setFullScreenButton() {
 

@@ -300,11 +300,6 @@ function create(arrayMenu, options) {
 	options.elParent = options.elParent || document.querySelector('body');
 	var elMenu = document.createElement('menu');
 	if (options.elParent.classList.contains("container")) elMenu.className = 'controls';
-	if (options.menu) {
-		if (options.menu.onmouseout) elMenu.onmouseout = options.menu.onmouseout;
-		if (options.menu.onmousemove) elMenu.onmousemove = options.menu.onmousemove;
-		if (options.menu.onmouseout) elMenu.onmouseout = options.menu.onmouseout;
-	}
 	function displayControls() {
 		elMenu.style.opacity = 1;
 		clearTimeout(timeoutControls);

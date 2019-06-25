@@ -49,7 +49,6 @@
     <Content Include="README.md" />
     <Content Include="rollup.config.js" />
     <Content Include="rollup.config.min.js" />
-    <Content Include="styles\Decorations\default.css" />
     <Content Include="styles\Decorations\gradient.css" />
     <Content Include="styles\Decorations\transparent.css" />
     <Content Include="styles\menu.css" />

@@ -26,6 +26,129 @@ loadScript.sync( '../../styles/menu.css', optionsStyle );
 loadScript.sync( '../../styles/Decorations/transparent.css', optionsStyle );
 loadScript.sync( '../../styles/Decorations/gradient.css', optionsStyle );
 
+/**
+ * Creates new menu
+ * @param {String[]|Object[]} arrayMenu array of menu and submenu items. If string then menu item name. If object then options of the new menu item:
+ * name - menu item name. Optional.
+ * items - array of submenu items. Same as menu item. Optional.
+ * onclick - function(event) called when user has clicked a menu item. event - event details. Optional.
+ * drop - direction of drop of the submenu. Following directions is available: If string then "up" - drop submenu to up. "left" - shift submenu to left. If object then following members is available: "up: true" and "left: true".
+ * @param {Object} [options] followed options is available. Optional.
+ * @param {HTMLElement} [options.elParent] Parent element of new menu. Optional. Default is "body" element.
+ * @param {HTMLElement} [options.canvas] canvas element. Use if you want put a menu inside a canvas. See "button inside canvas" example below for details. Optional.
+ * @param {String} [options.decorations] Optional. You can decorate your menu by a built-in style or use your custom style. Currently two built-in styles is available:
+ * 'Gradient' - use gradient.css file for decoration.
+ * 'Transparent' - use transparent.css file for decoration.
+ * Custom decoration:
+ * 'Custom' please edit the custom.css file from my example if you want a custom decoration of your menu.
+ *
+ * @example
+ *
+	//Drop menu to the left or/and up.
+	<script>
+		dropdownMenu.create( [
+
+			{
+
+				name: 'Drop up',
+				drop: 'up',
+				items: [
+
+					'up item 1',
+					{
+						name: 'up item 2',
+						onclick: function ( event ) {
+
+							var message = 'up item 2 onclick';
+							//console.log( message );
+							alert( message )
+
+						}
+					},
+
+				],
+
+			},
+			{
+
+				name: 'Left',
+				drop: 'left',
+				items: [
+
+					'left item 1',
+					{
+						name: 'left item 2',
+						onclick: function ( event ) {
+
+							var message = 'left item 2 onclick';
+							//console.log( message );
+							alert( message )
+
+						}
+					},
+
+				],
+
+			},
+			{
+
+				name: 'Up left',
+				drop:
+				{
+
+					left: true,
+					up: true,
+
+				},
+				items: [
+
+					'up left item 1',
+					{
+						name: 'up left item 2',
+						onclick: function ( event ) {
+
+							var message = 'up left item 2 onclick';
+							//console.log( message );
+							alert( message )
+
+						}
+					},
+
+				],
+
+			},
+
+		], {
+
+				decorations: 'Gradient',
+
+			} );
+	</script>
+ *
+ * @example
+ * 
+	//button inside canvas
+	<div class="container" id="containerDSE">
+		<canvas id="canvas"></canvas>
+	</div>
+	<script>
+	var elContainer = document.getElementById( "containerDSE" ),
+	elCanvas = elContainer.querySelector( 'canvas' );
+
+	dropdownMenu.create( [
+
+		'button',
+
+	], {
+
+		elParent: elContainer,
+		canvas: elCanvas,
+		decorations: 'Transparent',
+
+	} );
+	</script>
+ *
+ */
 export function create( arrayMenu, options ) {
 
 	options = options || {};
@@ -35,6 +158,7 @@ export function create( arrayMenu, options ) {
 	var elMenu = document.createElement( 'menu' );
 	if ( options.elParent.classList.contains( "container" ) )
 		elMenu.className = 'controls';
+/*
 	if ( options.menu ) {
 		if ( options.menu.onmouseout )
 			elMenu.onmouseout = options.menu.onmouseout;
@@ -43,6 +167,7 @@ export function create( arrayMenu, options ) {
 		if ( options.menu.onmouseout )
 			elMenu.onmouseout = options.menu.onmouseout;
 	}
+*/
 	function displayControls() {
 
 		elMenu.style.opacity = 1;
@@ -90,29 +215,6 @@ export function create( arrayMenu, options ) {
 
 		var dropdownChild = 'dropdown-child';
 		var elSpan = document.createElement( 'span' );
-/*
-		function getMenuButtonBorderWidth() {
-
-			if ( menuButtonStyle === undefined )
-				menuButtonStyle = getComputedStyle( elMenuButton );
-			var borderWidth = parseInt( menuButtonStyle['border-top-width'] );
-
-			//checking for compatibility with Firefox
-			if ( isNaN( borderWidth ) ) {
-				borderWidth = 0;
-
-				elDropdownChild.style.borderWidth = '1px';
-//				elDropdownChild.style.top = '-1px';
-				elMenuButton.style.borderWidth = '1px';
-				top = -1;
-
-			}
-
-//			return borderWidth;
-			return 0;
-
-		}
-*/
 		function moveUpLeft( drop ) {
 
 			setTimeout( function () {
@@ -131,28 +233,6 @@ export function create( arrayMenu, options ) {
 
 		}
 
-/*
-		function displayDropdownChild( elDropdownChild, display ) {
-
-			if ( elDropdownChild === null )
-				return;
-			if ( !elDropdownChild.classList.contains( dropdownChild ) ) {
-
-				console.error( 'Invalid class of elDropdownChild: ' + elDropdownChild.className );
-				return;
-
-			}
-
-			if ( display ) {
-				elDropdownChild.style.display = 'block';
-				elDropdownChild.style.opacity = 1;
-			} else {
-				elDropdownChild.style.display = 'none';
-				elDropdownChild.style.opacity = 0;
-			}
-
-		}
-*/
 
 		//Create menuButton class element
 		var elMenuButton = document.createElement( 'span' );
