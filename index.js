@@ -137,7 +137,18 @@ loadScript.sync( '../../styles/Decorations/gradient.css', optionsStyle );
 
 	dropdownMenu.create( [
 
-		'button',
+		{
+
+			name: 'Button',
+			onclick: function ( event ) {
+
+				var message = 'Button onclick';
+				//console.log( message );
+				alert( message )
+
+			},
+
+		},
 
 	], {
 

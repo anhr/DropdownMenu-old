@@ -346,8 +346,9 @@
 			id: "menuButtonFullScreen",
 			onclick: function ( event ) {
 
-				stereoEffect.setFullScreen();
 				setFullScreenButton();
+				if ( stereoEffect !== undefined )
+					stereoEffect.setFullScreen();
 
 			}
 
@@ -361,22 +362,12 @@
 
 	} );
 
-	function setFullScreenButton() {
-
-		var elMenuButtonFullScreen = document.getElementById( 'menuButtonFullScreen' );
-		if ( stereoEffect.isFullScreen() ) {
-			elMenuButtonFullScreen.innerHTML = '⤦';
-			elMenuButtonFullScreen.title = 'Non Full Screen';
-		} else {
-			elMenuButtonFullScreen.innerHTML = '⤢';
-			elMenuButtonFullScreen.title = 'Full Screen';
-		}
-
-	}
+	setFullScreenButton();
 
 	if ( WEBGL.isWebGLAvailable() === false ) {
 
 		document.body.appendChild( WEBGL.getWebGLErrorMessage() );
+		alert( WEBGL.getWebGLErrorMessage().innerHTML );
 
 	}
 	var camera, scene, renderer, controls, stereoEffect, raycaster, cubeType = 'cube';
@@ -639,7 +630,7 @@
 	function setFullScreenButton() {
 
 		var elMenuButtonFullScreen = document.getElementById( 'menuButtonFullScreen' );
-		if ( stereoEffect.isFullScreen() ) {
+		if ( ( stereoEffect !== undefined ) && stereoEffect.isFullScreen() ) {
 			elMenuButtonFullScreen.innerHTML = '⤦';
 			elMenuButtonFullScreen.title = 'Non Full Screen';
 		} else {
@@ -648,7 +639,6 @@
 		}
 
 	}
-	setFullScreenButton();
 	this.onFullScreen = function () {
 
 		stereoEffect.setFullScreen();
