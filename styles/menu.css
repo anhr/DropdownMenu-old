@@ -1,8 +1,4 @@
 ﻿.container {
-    /*
-    height: 400px;
-	width: 400px;
-    */
     position: relative;
 }
 .controls {
@@ -31,21 +27,21 @@ menu {
             display: block;
             opacity: 1;
         }
-
+/*
 .right {
     float: right;
 }
-/*https://www.hostinger.ru/rukovodstva/kak-sozdat-vipadauyshee-menu-css*/
+*/
+/*Thank to https://www.hostinger.ru/rukovodstva/kak-sozdat-vipadauyshee-menu-css*/
 .dropdown-child {
     display: none; /*block;*/
     opacity: 0;
     position: absolute;
-    /*width: auto;*/
 }
     .dropdown-child nobr {
         color: white;
         background-color: black;
-        /*opacity: 1;*/ /*0.5;полупрозрачный невыбранный элемент выпадающего меню*/
+        /*opacity: 1;*/
         text-decoration: none;
         display: block;
     }

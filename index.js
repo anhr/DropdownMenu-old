@@ -29,10 +29,13 @@ loadScript.sync( '../../styles/Decorations/gradient.css', optionsStyle );
 /**
  * Creates new menu
  * @param {String[]|Object[]} arrayMenu array of menu and submenu items. If string then menu item name. If object then options of the new menu item:
- * name - menu item name. Optional.
- * items - array of submenu items. Same as menu item. Optional.
- * onclick - function(event) called when user has clicked a menu item. event - event details. Optional.
- * drop - direction of drop of the submenu. Following directions is available: If string then "up" - drop submenu to up. "left" - shift submenu to left. If object then following members is available: "up: true" and "left: true".
+ * [name] {String|HTMLElement} - If string then menu item name. If HTMLElement then item element. Optional.
+ * [title] {String} - menu item title. Optional.
+ * [id] {String} - menu item identifier. Optional.
+ * [style] {String} - menu item style. Example: "float: right;" Optional.
+ * [items] {Array} - array of submenu items. Same as menu item. Optional.
+ * [onclick] {Function} - function(event) called when user has clicked a menu item. event - event details. Optional.
+ * [drop] - direction of drop of the submenu. Following directions is available: If string then "up" - drop submenu to up. "left" - shift submenu to left. If object then following members is available: "up: true" and "left: true".
  * @param {Object} [options] followed options is available. Optional.
  * @param {HTMLElement} [options.elParent] Parent element of new menu. Optional. Default is "body" element.
  * @param {HTMLElement} [options.canvas] canvas element. Use if you want put a menu inside a canvas. See "button inside canvas" example below for details. Optional.
@@ -181,10 +184,25 @@ export function create( arrayMenu, options ) {
 */
 	function displayControls() {
 
+/*
+		elControls = elContainer.querySelectorAll( '.controls' );
+		elControls.forEach( function ( control ) {
+
+			control.style.opacity = 1;
+
+		} );
+*/
 		elMenu.style.opacity = 1;
 		clearTimeout( timeoutControls );
 		timeoutControls = setTimeout( function () {
 
+/*
+			elControls.forEach( function ( control ) {
+
+				control.style.opacity = 0;
+
+			} );
+*/
 			elMenu.style.opacity = 0;
 
 		}, 5000 );
@@ -195,6 +213,14 @@ export function create( arrayMenu, options ) {
 		elMenu.style.opacity = 0;
 		options.canvas.onmouseout = function ( event ) {
 
+/*
+			elControls = elContainer.querySelectorAll( '.controls' );
+			elControls.forEach( function ( control ) {
+
+				control.style.opacity = 0;
+
+			} );
+*/
 			elMenu.style.opacity = 0;
 
 		}
@@ -248,25 +274,12 @@ export function create( arrayMenu, options ) {
 		//Create menuButton class element
 		var elMenuButton = document.createElement( 'span' );
 		elMenuButton.className = 'menuButton' +
-//			( options.decorations === undefined ? 'Default' : options.decorations ) +
-			( options.decorations === undefined ? '' : ' menuButton' + options.decorations ) +
-			( menuItem.right ? ' right' : '' );//move menu item to the right border of the parent element
-/*
-		elMenuButton.onmouseover = function ( event ) {
+			( options.decorations === undefined ? '' : ' menuButton' + options.decorations );
+//			+ ( menuItem.right ? ' right' : '' );//move menu item to the right border of the parent element
 
-			var elDropdownChild = event.currentTarget.querySelector( '.' + dropdownChild );
-			if ( elDropdownChild === null )
-				return;
-			displayDropdownChild( elDropdownChild, true );
+		if ( menuItem.style !== undefined )
+			elMenuButton.style.cssText = menuItem.style;
 
-		}
-		elMenuButton.onmouseout = function ( event ) {
-
-			var elDropdownChild = event.currentTarget.querySelector( '.' + dropdownChild );
-			displayDropdownChild( elDropdownChild );
-
-		}
-*/
 		if ( menuItem.onclick !== undefined )
 			elMenuButton.onclick = menuItem.onclick;
 		if ( menuItem.id !== undefined )
@@ -295,7 +308,16 @@ export function create( arrayMenu, options ) {
 
 		//Create name span
 		var elName = document.createElement( 'span' );
-		elName.innerHTML = name;
+		switch ( typeof name ) {
+			case "object":
+				elName.appendChild( name );
+				break;
+			case "string":
+			case "undefined":
+				elName.innerHTML = name;
+				break;
+			default: console.error( 'Invalid typeof name: ' + typeof name );
+		}
 		elMenuButton.appendChild( elName );
 
 		//Create dropdown-child items

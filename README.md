@@ -28,7 +28,7 @@ Creates new menu.
 | [arrayMenuItem.name] | <code>String or HTMLElement</code> | "" | If string then menu item name. If HTMLElement then item element. Optional. |
 | [arrayMenuItem.title] | <code>String</code> |  | menu item title. Optional. |
 | [arrayMenuItem.id] | <code>String</code> |  | menu item identifier. Optional. |
-| [arrayMenuItem.right] | <code>Boolean</code> |  | true - menu item floats to the right of its container. Optional. |
+| [arrayMenuItem.style] | <code>String</code> |  | menu item style. Example: "float: right;" Optional. |
 | [arrayMenuItem.items] | <code>Array</code> |  | array of submenu items. Same as menu item. Optional. |
 | [arrayMenuItem.onclick] | <code>Function</code> |  | function(event) called when user has clicked a menu item. event - event details. Optional. |
 | [arrayMenuItem.drop] | <code>String or Object</code> |  | direction of drop of the submenu. Following directions is available: If string then "up" - drop submenu to up. "left" - shift submenu to left. If object then following members is available: "up: true" and "left: true". |

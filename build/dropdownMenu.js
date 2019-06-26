@@ -333,8 +333,8 @@ function create(arrayMenu, options) {
 			}, 0);
 		}
 		var elMenuButton = document.createElement('span');
-		elMenuButton.className = 'menuButton' + (
-		options.decorations === undefined ? '' : ' menuButton' + options.decorations) + (menuItem.right ? ' right' : '');
+		elMenuButton.className = 'menuButton' + (options.decorations === undefined ? '' : ' menuButton' + options.decorations);
+		if (menuItem.style !== undefined) elMenuButton.style.cssText = menuItem.style;
 		if (menuItem.onclick !== undefined) elMenuButton.onclick = menuItem.onclick;
 		if (menuItem.id !== undefined) elMenuButton.id = menuItem.id;
 		elSpan.appendChild(elMenuButton);
@@ -345,7 +345,17 @@ function create(arrayMenu, options) {
 			if (menuItem.title) elMenuButton.title = menuItem.title;
 		}
 		var elName = document.createElement('span');
-		elName.innerHTML = name;
+		switch (typeof name) {
+			case "object":
+				elName.appendChild(name);
+				break;
+			case "string":
+			case "undefined":
+				elName.innerHTML = name;
+				break;
+			default:
+				console.error('Invalid typeof name: ' + typeof name);
+		}
 		elMenuButton.appendChild(elName);
 		if (menuItem.items) {
 			var elDropdownChild = document.createElement('span');

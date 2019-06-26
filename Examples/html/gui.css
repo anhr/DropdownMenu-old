@@ -1,0 +1,34 @@
+﻿/* Thanks to https://stackoverflow.com/questions/41404643/place-dat-gui-strictly-inside-three-js-scene-without-iframe */
+/*
+.menuButtonGui {
+    float: right;
+    opacity: 1;
+}
+    .menuButtonGui:hover {
+    }
+*/
+#iframe-goes-in-here {
+    width: 50%;
+    /*
+    height: 200px;
+    background-color: #ff0000;
+    left: 50px;
+    top: 50px;
+    float: right;
+    */
+}
+
+    #iframe-goes-in-here iframe {
+        width: 100%;
+        height: 100%;
+        position: relative;
+        z-index: 1;
+    }
+
+#my-gui-container {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    /*left: 20px;*/
+    z-index: 10;
+}
