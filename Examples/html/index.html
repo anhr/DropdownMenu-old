@@ -27,10 +27,10 @@
 
 	<!--A lightweight graphical user interface for changing variables in JavaScript. https://github.com/dataarts/dat.gui -->
 	<!--<script src="../../../../three.js/dev/examples/js/libs/dat.gui.js"></script>-->
-	<script src="../../../threejs/three.js/examples/js/libs/dat.gui.js"></script>
+	<!--<script src="../../../threejs/three.js/examples/js/libs/dat.gui.js"></script>-->
 	<!--<script src="js/libs/dat.gui.min.js"></script>-->
 	<!--<script src="../../dat.gui/build/dat.gui.min.js"></script>-->
-	<!--<script src="../../dat.gui/build/dat.gui.js"></script>-->
+	<script src="../../../threejs/dat.gui/build/dat.gui.js"></script>
 
 	<script src="../../../threejs/three.js/examples/js/effects/StereoEffect.js"></script>
 	<script src="../../../threejs/three.js/src/objects/SpriteText.js"></script>
@@ -38,7 +38,6 @@
 	<script src="../../../../three.js/dev/examples/js/effects/StereoEffect.js"></script>
 	<script src="../../../../three.js/dev/src/objects/SpriteText.js"></script>
 	-->
-
 	<!--Cube-->
 	<script src="../../../threejs/three.js/examples/js/geometries/ConvexGeometry.js"></script>
 	<script src="../../../threejs/three.js/examples/js/QuickHull.js"></script>
@@ -46,165 +45,154 @@
 	<script src="../../../../three.js/dev/examples/js/geometries/ConvexGeometry.js"></script>
 	<script src="../../../../three.js/dev/examples/js/QuickHull.js"></script>
 	-->
-
 	<!--Attention! Load custom.css file after dropdownMenu.js file for correctly priority of the styles-->
 	<link rel="stylesheet" href="custom.css" type="text/css">
+	<link rel="stylesheet" href="gui.css" type="text/css">
+
+
+	<!--Attention! Load controllerPlay.js file after StereoEffect.js if you want to localise controllerPlay buttons -->
+	<!--<script src="https://raw.githack.com/anhr/DropdownMenu/master/build/controllerPlay.js"></script>-->
+	<script src="../../../nodejs/controllerPlay/build/controllerPlay.js"></script>
+	<!--<script src="../../../nodejs/customController/build/customControllers.js"></script>-->
 
 </head>
-<body>
-	<p>
-		<a href='https://anhr.github.io/index.html' target="_blank">Home</a>
-		| <a href='https://github.com/anhr/DropdownMenu' target="_blank">GitHub</a>
-	</p>
-	<h1>node.js version of the DropdownMenu.</h1>
+		<body>
+			<p>
+				<a href='https://anhr.github.io/index.html' target="_blank">Home</a>
+				| <a href='https://github.com/anhr/DropdownMenu' target="_blank">GitHub</a>
+			</p>
+			<h1>node.js version of the DropdownMenu.</h1>
 
-	<h2>Simple menu.</h2>
-	<script>
-		dropdownMenu.create( [
+			<h2>Simple menu.</h2>
+			<script>
+				dropdownMenu.create( [
 
-			'Menu 1 ',
-			{
-
-				name: 'Menu 2 ',
-				items: [
-
-					'Item 2.1',
+					'Menu 1 ',
 					{
-						name: 'Item 2.2',
+
+						name: 'Menu 2 ',
+						items: [
+
+							'Item 2.1',
+							{
+								name: 'Item 2.2',
+								onclick: function ( event ) {
+
+									var message = 'Item 2.2 onclick';
+									//console.log( message );
+									alert( message )
+
+								}
+							},
+
+						],
+
+					},
+					{
+
+						name: 'Menu 3',
 						onclick: function ( event ) {
 
-							var message = 'Item 2.2 onclick';
+							var message = 'Menu 3 onclick';
 							//console.log( message );
 							alert( message )
 
-						}
+						},
+
 					},
 
-				],
+				] );
+			</script>
 
-			},
-			{
+			<h2>Drop menu to the left or/and up.</h2>
+			<h3><a href="../../styles/Decorations/gradient.css" target="_blank">Gradient decoration</a>.</h3>
+			<script>
+				dropdownMenu.create( [
 
-				name: 'Menu 3',
-				onclick: function ( event ) {
-
-					var message = 'Menu 3 onclick';
-					//console.log( message );
-					alert( message )
-
-				},
-
-			},
-
-		] );
-	</script>
-<!--
-	<h2>Simple menu.</h2>
-	<menu>
-		<span>
-			<span class="menuButton" id="menu1" title="Stereo effects">
-				<span>Menu 1</span>
-				<span class="dropdown-child" title="">
-					<nobr>Item 1.1</nobr>
-					<nobr>Item 1.2</nobr>
-				</span>
-			</span>
-		</span>
-		<span>
-			<span class="menuButton" id="menu2" title="2">
-				<span>Menu 2</span>
-				<span class="dropdown-child" title="">
-					<nobr>Item 2.1</nobr>
-					<nobr>Item 2.2</nobr>
-				</span>
-			</span>
-		</span>
-		<span class="menuButton right">Menu 3</span>
-	</menu>
--->
-	<h2>Drop menu to the left or/and up.</h2>
-	<h3><a href="../../styles/Decorations/gradient.css" target="_blank">Gradient decoration</a>.</h3>
-	<script>
-		dropdownMenu.create( [
-
-			{
-
-				name: 'Drop up',
-				drop: 'up',
-				items: [
-
-					'up item 1',
 					{
-						name: 'up item 2',
-						onclick: function ( event ) {
 
-							var message = 'up item 2 onclick';
-							//console.log( message );
-							alert( message )
+						name: 'Drop up',
+						drop: 'up',
+						items: [
 
-						}
+							'up item 1',
+							{
+
+								name: 'up item 2',
+								onclick: function ( event ) {
+
+									var message = 'up item 2 onclick';
+									//console.log( message );
+									alert( message )
+
+								}
+
+							},
+
+						],
+
 					},
-
-				],
-
-			},
-			{
-
-				name: 'Left',
-				drop: 'left',
-				items: [
-
-					'left item 1',
 					{
-						name: 'left item 2',
-						onclick: function ( event ) {
 
-							var message = 'left item 2 onclick';
-							//console.log( message );
-							alert( message )
+						name: 'Left',
+						drop: 'left',
+						items: [
 
-						}
+							'left item 1',
+							{
+
+								name: 'left item 2',
+								onclick: function ( event ) {
+
+									var message = 'left item 2 onclick';
+									//console.log( message );
+									alert( message )
+
+								}
+
+							},
+
+						],
+
 					},
-
-				],
-
-			},
-			{
-
-				name: 'Up left',
-				drop:
-				{
-
-					left: true,
-					up: true,
-
-				},
-				items: [
-
-					'up left item 1',
 					{
-						name: 'up left item 2',
-						onclick: function ( event ) {
 
-							var message = 'up left item 2 onclick';
-							//console.log( message );
-							alert( message )
+						name: 'Up left',
+						drop:
+						{
 
-						}
+							left: true,
+							up: true,
+
+						},
+						items: [
+
+							'up left item 1',
+							{
+
+								name: 'up left item 2',
+								onclick: function ( event ) {
+
+									var message = 'up left item 2 onclick';
+									//console.log( message );
+									alert( message )
+
+								}
+
+							},
+
+						],
+
 					},
 
-				],
+				], {
 
-			},
+						decorations: 'Gradient',
 
-		], {
+					} );
+			</script>
 
-				decorations: 'Gradient',
-
-			} );
-	</script>
-
-	<!--Attention! Line below is not compatible with Android mobile version of the Chrome.-->
+			<!--Attention! Line below is not compatible with Android mobile version of the Chrome.-->
 	<h3><a href="custom.css" target="_blank">Custom decoration</a>.</h3>
 	<!--<p>Custom</p>-->
 
@@ -219,6 +207,7 @@
 
 					'up item 1',
 					{
+
 						name: 'up item 2',
 						onclick: function ( event ) {
 
@@ -227,6 +216,7 @@
 							alert( message )
 
 						}
+
 					},
 
 				],
@@ -240,6 +230,7 @@
 
 					'left item 1',
 					{
+
 						name: 'left item 2',
 						onclick: function ( event ) {
 
@@ -248,6 +239,7 @@
 							alert( message )
 
 						}
+
 					},
 
 				],
@@ -278,6 +270,7 @@
 
 					'up left item 1',
 					{
+
 						name: 'up left item 2',
 						onclick: function ( event ) {
 
@@ -286,6 +279,7 @@
 							alert( message )
 
 						}
+
 					},
 
 				],
@@ -309,382 +303,470 @@
 
 	<div class="container" id="containerDSE">
 		<canvas id="canvas"></canvas>
+		<!--Thanks to https://stackoverflow.com/questions/41404643/place-dat-gui-strictly-inside-three-js-scene-without-iframe-->
+		<div id="iframe-goes-in-here">
+			<div id="my-gui-container"></div>
+			<!--<iframe></iframe>-->
+		</div>
 	</div>
 	<script>
-	var elContainer = document.getElementById( "containerDSE" ),
-	elCanvas = elContainer.querySelector( 'canvas' );
-
-	dropdownMenu.create( [
-
-		{
-
-			name: '⚭',
-			title: 'Stereo effects',
-			id: 'menuButtonStereoEffects',
-			drop: 'up',
-			items: [
-
-				'up item 1',
-				{
-					name: 'up item 2',
-					onclick: function ( event ) {
-
-						var message = 'up item 2 onclick';
-						//console.log( message );
-						alert( message )
-
-					}
-				},
-
-			],
-
-		},
-		{
-
-//			name: '',
-			right: true,
-			id: "menuButtonFullScreen",
-			onclick: function ( event ) {
-
-				setFullScreenButton();
-				if ( stereoEffect !== undefined )
-					stereoEffect.setFullScreen();
-
-			}
-
-		},
-
-	], {
-
-		elParent: elContainer,
-		canvas: elCanvas,
-		decorations: 'Transparent',
-
-	} );
-
-	setFullScreenButton();
-
-	if ( WEBGL.isWebGLAvailable() === false ) {
-
-		document.body.appendChild( WEBGL.getWebGLErrorMessage() );
-		alert( WEBGL.getWebGLErrorMessage().innerHTML );
-
-	}
-	var camera, scene, renderer, controls, stereoEffect, raycaster, cubeType = 'cube';
-	init();
-	animate();
-
-	function init() {
-
-		// CAMERA
-
-		camera = new THREE.PerspectiveCamera( 70, window.innerWidth / window.innerHeight, 0.01, 10 );
-		camera.position.set( 0.4, 0.4, 2 );
-
-		// SCENE
-
-		scene = new THREE.Scene();
-		scene.background = new THREE.Color( 0x000000 );
-		scene.fog = new THREE.Fog( 0x000000, 250, 1400 );
-
-		//
-
-		renderer = new THREE.WebGLRenderer( {
-
-			antialias: true,
-			canvas: elContainer.querySelector( 'canvas' ),//document.getElementById( 'canvas' ),
-
-		} );
-		renderer.setPixelRatio( window.devicePixelRatio );
-
-		//resize
-		renderer.setSizeOld = renderer.setSize;
-		renderer.setSize = function ( width, height, updateStyle ) {
-
-			renderer.setSizeOld( width, height, updateStyle );
-
-			timeoutControls = setTimeout( function () {
-
-				//				var elContainer = document.getElementById( 'containerDSE' );
-				elContainer.style.height = elCanvas.style.height;//height + "px";
-				elContainer.style.width = elCanvas.style.width;//width + "px";
-				elContainer.style.left = elCanvas.style.left;
-				elContainer.style.top = elCanvas.style.top;
-				elContainer.style.position = elCanvas.style.position;
-				/*
-									function menuMove( menyid ) {
-
-										var elMenuButton = elContainer.querySelector( menyid );
-										var elDropdownChild = elMenuButton.querySelector( '.dropdown-child' );
-										elDropdownChild.style.display = 'block';
-										elDropdownChild.style.top = '-' + elDropdownChild.clientHeight + 'px';
-										elDropdownChild.style.left = '-' + elMenuButton.clientWidth + 'px';
-										//					elDropdownChild.style.opacity = 0;
-										elDropdownChild.style.display = 'none';
-
-									}
-									menuMove( '#menuButtonStereoEffects' );
-									menuMove( '#menuButton2' );
-				*/
-
-			}, 0 );
-
-		};
-		renderer.setSize( window.innerWidth / 2, window.innerHeight / 2 );
-		//	document.body.appendChild( renderer.domElement );
-
-		//
-		controls = new THREE.OrbitControls( camera, renderer.domElement );
-		controls.target.set( 0, 0, 0 );
-		controls.update();
-
-		//StereoEffect
-
-		stereoEffect = new THREE.StereoEffect( renderer, {
-
-			spatialMultiplex: THREE.StereoEffectParameters.spatialMultiplexsIndexs.Mono, //.SbS,
-			far: camera.far,
-			camera: camera,
-			stereoAspect: 1,
-			rememberSize: true,
-
-		} );
-
-		//Light
-
-		var light = new THREE.PointLight( 0xffffff, 1 );
-		light.position.copy( new THREE.Vector3( 1, 1, 1 ) );
-		scene.add( light );
-
-		light = new THREE.PointLight( 0xffffff, 1 );
-		light.position.copy( new THREE.Vector3( -2, -2, -2 ) );
-		scene.add( light );
-
-		//raycaster
-
-		raycaster = new THREE.Raycaster();
-		raycaster.params.Points.threshold = 0.03;
-		raycaster.setStereoEffect( {
-
-			renderer: renderer,
-			stereoEffect: stereoEffect,
-			onIntersection: function ( intersects ) {
-
-				onIntersection( intersects );
-
-			},
-			onIntersectionOut: function ( intersects ) {
-
-				onIntersectionOut( intersects );
-
-			},
-			onMouseDown: function ( intersects ) {
-
-				onMouseDown( intersects );
-
-			}
-
-		} );
-
-		//Points
-
-		var points = new THREE.Points( new THREE.BufferGeometry().setFromPoints( [
-			new THREE.Vector3( 0, 0, 0 ),
-			new THREE.Vector3( 0, 0.5, -1 ),
-			new THREE.Vector3( 0.5, 0, 1 ),
-		] ),
-			new THREE.PointsMaterial( {
-
-				color: 0xffffff,
-				size: 0.05,
-				alphaTest: 0.5
-
-			} ) );
-		points.position.copy( new THREE.Vector3( 0.1, 0.2, 0 ) );
-		points.scale.copy( new THREE.Vector3( 2, 2, 1 ) );
-		scene.add( points );
-		if ( raycaster.stereo !== undefined )
-			raycaster.stereo.addParticles( points );
-		//			else particles.push( points );
-
-		//cubes
-
-		var cube = new THREE.Mesh( new THREE.ConvexBufferGeometry( new THREE.CubeGeometry( 0.4, 0.4, 0.4 ).vertices ),
-			new THREE.MeshLambertMaterial( {
-				color: 'green',//0xffffff
-				/*
-				opacity: 0.5,
-				transparent: true,
-				*/
-			} ) );
-		cube.position.copy( new THREE.Vector3( -1, 0, 0 ) );
-		//cube.scale.copy( new THREE.Vector3( 2, 1, 1 ) );
-		cube.type = cubeType;
-		scene.add( cube );
-		if ( raycaster.stereo !== undefined )
-			raycaster.stereo.addParticles( cube );
-		//			else particles.push( cube );
+		var elContainer = document.getElementById( "containerDSE" ),
+			elCanvas = elContainer.querySelector( 'canvas' );
 
 		//dat-gui JavaScript Controller Library
 		//https://github.com/dataarts/dat.gui
-		var gui = new dat.GUI();
+		//			var gui = new dat.GUI();
+		var gui = new dat.GUI( {
 
-		if ( stereoEffect !== undefined )
-			THREE.gui.stereoEffect( gui, stereoEffect.options, {
+			autoPlace: false,
+			//			closed: true,//Icorrect "Open Controls" button name
 
-				gui: gui,
+		} );
+
+		//Close gui window
+		gui.__closeButton.click();
+
+		//Thanks to https://stackoverflow.com/questions/41404643/place-dat-gui-strictly-inside-three-js-scene-without-iframe
+		var customContainer = document.getElementById( 'my-gui-container' );
+		customContainer.appendChild( gui.domElement );
+
+		/*
+				var folderPlay = gui.addFolder( 'Play' );
+				//folderPlay.open();
+		*/
+		dropdownMenu.create( [
+
+			{
+
+				name: '⚭',
+				title: 'Stereo effects',
+				id: 'menuButtonStereoEffects',
+				drop: 'up',
+				items: [
+
+					{
+						name: 'Mono',
+						onclick: function ( event ) {
+
+							if ( stereoEffect.setSpatialMultiplex !== undefined )
+								stereoEffect.setSpatialMultiplex( THREE.StereoEffectParameters.spatialMultiplexsIndexs.Mono );
+							else stereoEffect.options.spatialMultiplex = THREE.StereoEffectParameters.spatialMultiplexsIndexs.Mono;
+
+						}
+					},
+					{
+						name: 'Side by side',
+						onclick: function ( event ) {
+
+							if ( stereoEffect.setSpatialMultiplex !== undefined )
+								stereoEffect.setSpatialMultiplex( THREE.StereoEffectParameters.spatialMultiplexsIndexs.SbS );
+							else stereoEffect.options.spatialMultiplex = THREE.StereoEffectParameters.spatialMultiplexsIndexs.SbS;
+
+						}
+					},
+					{
+						name: 'Top and bottom',
+						onclick: function ( event ) {
+
+							if ( stereoEffect.setSpatialMultiplex !== undefined )
+								stereoEffect.setSpatialMultiplex( THREE.StereoEffectParameters.spatialMultiplexsIndexs.TaB );
+							else stereoEffect.options.spatialMultiplex = THREE.StereoEffectParameters.spatialMultiplexsIndexs.TaB;
+
+						}
+					},
+
+				],
+
+			},
+			{
+
+				//				name: '',
+				//				right: true,
+				style: 'float: right;',
+				id: "menuButtonFullScreen",
+				onclick: function ( event ) {
+
+					if ( stereoEffect !== undefined )
+						stereoEffect.setFullScreen();
+					setFullScreenButton();
+
+				}
+
+			},
+
+		],
+			{
+
+				elParent: elContainer,
+				canvas: elCanvas,
+				decorations: 'Transparent',
 
 			} );
 
-		window.addEventListener( 'resize', onResize, false );
-
-	}
-	function onResize() {
-
-		var size = new THREE.Vector2();
-		renderer.getSize( size );
-		camera.aspect = size.x / size.y;
-		camera.updateProjectionMatrix();
-
-		if ( typeof se === 'undefined' )
-			renderer.setSize( size.x, size.y );
-		else
-			stereoEffect.setSize( size.x, size.y );
-
-	}
-	function onDocumentMouseMove( event ) {
-
-		if ( raycaster.stereo !== undefined )
-			raycaster.stereo.onDocumentMouseMove( event );
-		else {
-
-			// Test of the old version of THREE.Raycaster
-			event.preventDefault();
-			var left = renderer.domElement.offsetLeft,
-				top = renderer.domElement.offsetTop,
-				size = new THREE.Vector2;
-			renderer.getSize( size );
-			mouse.x = ( event.clientX / size.x ) * 2 - 1 - ( left / size.x ) * 2;
-			mouse.y = -( event.clientY / size.y ) * 2 + 1 + ( top / size.y ) * 2;
-
-		}
-		if ( event.buttons != 1 )
-			return;
-
-		render();
-
-	}
-	function onDocumentMouseDown( event ) {
-
-		if ( raycaster.stereo !== undefined )
-			raycaster.stereo.onDocumentMouseDown( event );
-
-	}
-	function animate() {
-
-		requestAnimationFrame( animate );
-
-		render();
-
-	}
-
-	function render() {
-
-		if ( typeof stereoEffect === 'undefined' )
-			renderer.render( scene, camera );
-		else stereoEffect.render( scene, camera );
-
-	}
-
-	var canvasMouseOver = false,
-		//		elControls = document.getElementById( 'controls' ),
-		elControls = elContainer.querySelector( '.controls' ),
-		timeoutControls;
-
-	function displayControls() {
-
-		elControls.style.opacity = 1;
-		clearTimeout( timeoutControls );
-		timeoutControls = setTimeout( function () {
-
-			elControls.style.opacity = 1;//0;
-
-		}, 5000 );
-
-	}
-
-	this.onControlsMouseOut = function () {
-
-		//	console.log( 'onControlsMouseOut' );
-		if ( !canvasMouseOver )
-			elControls.style.opacity = 1;//0;
-
-	}
-
-	this.onControlsMouseMove = function () {
-
-		//	console.log( 'onControlsMouseOver' );
-		displayControls();
-
-	}
-	function setFullScreenButton() {
-
-		var elMenuButtonFullScreen = document.getElementById( 'menuButtonFullScreen' );
-		if ( ( stereoEffect !== undefined ) && stereoEffect.isFullScreen() ) {
-			elMenuButtonFullScreen.innerHTML = '⤦';
-			elMenuButtonFullScreen.title = 'Non Full Screen';
-		} else {
-			elMenuButtonFullScreen.innerHTML = '⤢';
-			elMenuButtonFullScreen.title = 'Full Screen';
-		}
-
-	}
-	this.onFullScreen = function () {
-
-		stereoEffect.setFullScreen();
 		setFullScreenButton();
 
-	}
-	/*
-		this.onStereoEffects = function () {
+		if ( WEBGL.isWebGLAvailable() === false ) {
 
-			console.log( 'onStereoEffects' );
+			document.body.appendChild( WEBGL.getWebGLErrorMessage() );
+			alert( WEBGL.getWebGLErrorMessage().innerHTML );
 
 		}
-	*/
-	/*
-		function displayDropdownItem( event ) {
+		var camera, scene, renderer, controls, stereoEffect, raycaster, cubeType = 'cube', group;
+		init();
+		animate();
 
-			event.currentTarget.querySelector( '.dropdown-child' ).querySelectorAll( 'span' ).forEach( function ( elDropdownItem ) {
+		function init() {
 
-				console.log( '' );
-	//			elDropdownItem.style.width = 'auto';
-	//			elDropdownItem.style.display = 'inline';
+			// CAMERA
 
-	//			elDropdownItem.style.color = 'white';
-	//			elDropdownItem.style.backgroundColor = 'black';//'rgba( 1, 1, 1, 0.5 )';
+			camera = new THREE.PerspectiveCamera( 70, window.innerWidth / window.innerHeight, 0.01, 10 );
+			camera.position.set( 0.4, 0.4, 2 );
 
+			// SCENE
+
+			scene = new THREE.Scene();
+			scene.background = new THREE.Color( 0x000000 );
+			scene.fog = new THREE.Fog( 0x000000, 250, 1400 );
+
+			//
+
+			renderer = new THREE.WebGLRenderer( {
+
+				antialias: true,
+				canvas: elContainer.querySelector( 'canvas' ),//document.getElementById( 'canvas' ),
 
 			} );
+			renderer.setPixelRatio( window.devicePixelRatio );
+
+			//resize
+			renderer.setSizeOld = renderer.setSize;
+			renderer.setSize = function ( width, height, updateStyle ) {
+
+				renderer.setSizeOld( width, height, updateStyle );
+
+				timeoutControls = setTimeout( function () {
+
+					elContainer.style.height = elCanvas.style.height;//height + "px";
+					elContainer.style.width = elCanvas.style.width;//width + "px";
+					elContainer.style.left = elCanvas.style.left;
+					elContainer.style.top = elCanvas.style.top;
+					elContainer.style.position = elCanvas.style.position;
+
+				}, 0 );
+
+			};
+			renderer.setSize( window.innerWidth / 2, window.innerHeight / 2 );
+
+			//
+			controls = new THREE.OrbitControls( camera, renderer.domElement );
+			controls.target.set( 0, 0, 0 );
+			controls.update();
+
+			//StereoEffect
+
+			stereoEffect = new THREE.StereoEffect( renderer, {
+
+				spatialMultiplex: THREE.StereoEffectParameters.spatialMultiplexsIndexs.Mono, //.SbS,
+				far: camera.far,
+				camera: camera,
+				stereoAspect: 1,
+				rememberSize: true,
+				onFullScreen: function ( fullScreen ) {
+
+					setFullScreenButton( fullScreen );
+
+				},
+				cookie: THREE.cookie,
+
+			} );
+			stereoEffect.options.spatialMultiplex = THREE.StereoEffectParameters.spatialMultiplexsIndexs.Mono;
+
+			//Light
+
+			var light = new THREE.PointLight( 0xffffff, 1 );
+			light.position.copy( new THREE.Vector3( 1, 1, 1 ) );
+			scene.add( light );
+
+			light = new THREE.PointLight( 0xffffff, 1 );
+			light.position.copy( new THREE.Vector3( -2, -2, -2 ) );
+			scene.add( light );
+
+			//raycaster
+
+			raycaster = new THREE.Raycaster();
+			raycaster.params.Points.threshold = 0.03;
+			raycaster.setStereoEffect( {
+
+				renderer: renderer,
+				stereoEffect: stereoEffect,
+				onIntersection: function ( intersects ) {
+
+					onIntersection( intersects );
+
+				},
+				onIntersectionOut: function ( intersects ) {
+
+					onIntersectionOut( intersects );
+
+				},
+				onMouseDown: function ( intersects ) {
+
+					onMouseDown( intersects );
+
+				}
+
+			} );
+
+			group = new THREE.Group();
+			scene.add( group );
+
+			//PlayController
+			var colorRed = new THREE.Color( 0xff0000 );
+			gui.add( new controllerPlay.PlayController( group, {
+
+				onShowObject3D: function ( objects3DItem ) {
+
+					objects3DItem.visible = true;
+
+				},
+				onHideObject3D: function ( objects3DItem ) {
+
+					objects3DItem.visible = false;//hide object3D
+
+				},
+				onSelectedObject3D: function ( objects3DItem ) {
+
+					objects3DItem.material.color = colorRed;
+					objects3DItem.visible = true;
+
+				},
+				onRestoreObject3D: function ( objects3DItem ) {
+
+					objects3DItem.material.color = objects3DItem.userData.color;
+					objects3DItem.visible = true;
+
+				},
+
+			} ) );
+/*
+			gui.add( new customcontrollers.PlayController( group, {
+
+				onShowObject3D: function ( objects3DItem ) {
+
+					objects3DItem.visible = true;
+
+				},
+				onHideObject3D: function ( objects3DItem ) {
+
+					objects3DItem.visible = false;//hide object3D
+
+				},
+				onSelectedObject3D: function ( objects3DItem ) {
+
+					objects3DItem.material.color = colorRed;
+					objects3DItem.visible = true;
+
+				},
+				onRestoreObject3D: function ( objects3DItem ) {
+
+					objects3DItem.material.color = objects3DItem.userData.color;
+					objects3DItem.visible = true;
+
+				},
+
+			} ) );
+*/
+			//			controllerPlayRate3.domElement.title = 'Rate of changing of 3D obects per second.';
+			/*
+						var controllerPlayRate = gui.add( new dat.controllers.CustomController( {
+
+							playRate: 1,
+							property: function ( customController ) {
+
+								return controllerPlay.create( group, customController, {
+
+									onSelectedObject3D: function ( objects3DItem ) {
+
+										objects3DItem.material.color = colorRed;
+										objects3DItem.visible = true;
+
+									},
+									onUnselectedObject3D: function ( objects3DItem ) {
+
+										objects3DItem.visible = false;//hide object3D
+
+									},
+									onRestoreObject3D: function ( objects3DItem ) {
+
+										objects3DItem.material.color = objects3DItem.userData.color;
+										objects3DItem.visible = true;
+
+									},
+
+								} );
+
+							},
+
+						}, 'playRate', 1, 25, 1 ) ).onChange( function ( value ) {
+
+							onChangePlayRate( value );
+
+						} );
+						controllerPlayRate.domElement.title = 'Rate of changing of 3D obects per second.';
+			*/
+			/*
+					//PrevAndNextController
+					folderPlay.add( new dat.controllers.CustomController( {
+
+						property: function () {
+
+							return controllerPrevAndNext();
+
+						},
+
+					} ) );
+			*/
+			//Points
+
+			var points = new THREE.Points( new THREE.BufferGeometry().setFromPoints( [
+				new THREE.Vector3( 0, 0, 0 ),
+				new THREE.Vector3( 0, 0.5, -1 ),
+				new THREE.Vector3( 0.5, 0, 1 ),
+			] ),
+				new THREE.PointsMaterial( {
+
+					color: 0xffffff,
+					size: 0.05,
+					alphaTest: 0.5
+
+				} ) );
+			points.position.copy( new THREE.Vector3( 0.1, 0.2, 0 ) );
+			points.scale.copy( new THREE.Vector3( 2, 2, 1 ) );
+			points.userData.color = points.material.color;
+			//			scene.add( points );
+			group.add( points );
+
+			if ( raycaster.stereo !== undefined )
+				raycaster.stereo.addParticles( points );
+			//			else particles.push( points );
+
+			//cubes
+
+			function addCube( cubePosition, color ) {
+
+				var cube = new THREE.Mesh( new THREE.ConvexBufferGeometry( new THREE.CubeGeometry( 0.4, 0.4, 0.4 ).vertices ),
+					new THREE.MeshLambertMaterial( {
+						color: color,
+						/*
+						opacity: 0.5,
+						transparent: true,
+						*/
+					} ) );
+				cube.position.copy( cubePosition );
+				cube.type = cubeType;
+				cube.userData.color = cube.material.color;
+				group.add( cube );
+
+				if ( raycaster.stereo !== undefined )
+					raycaster.stereo.addParticles( cube );
+
+			}
+			addCube( new THREE.Vector3( -1, 0, 0 ), 0xffffff );
+			addCube( new THREE.Vector3( -0.5, 0.5, -0.5 ), 'green' );
+
+			if ( ( stereoEffect !== undefined ) && ( typeof gui !== 'undefined' ) )
+				THREE.gui.stereoEffect( gui, stereoEffect.options, {
+
+					gui: gui,
+					stereoEffect: stereoEffect,
+
+				} );
+
+			window.addEventListener( 'resize', onResize, false );
+
 		}
-	*/
-	this.onMenuButtonOver = function ( event ) {
+		function onResize() {
 
-		var elDropdownChild = event.currentTarget.querySelector( '.dropdown-child' );
-		elDropdownChild.style.display = 'block';
-		elDropdownChild.style.opacity = 1;
-		//		elDropdownChild.style.width = 'auto';
-		//		displayDropdownItem( event );
+			var size = new THREE.Vector2();
+			renderer.getSize( size );
+			camera.aspect = size.x / size.y;
+			camera.updateProjectionMatrix();
 
-	}
-	this.onMenuButtonOut = function ( event ) {
+			if ( typeof se === 'undefined' )
+				renderer.setSize( size.x, size.y );
+			else
+				stereoEffect.setSize( size.x, size.y );
 
-		var elDropdownChild = event.currentTarget.querySelector( '.dropdown-child' );
-		elDropdownChild.style.display = 'none';
-		//		elDropdownChild.style.opacity = 0;
+		}
+		function onDocumentMouseMove( event ) {
 
-	}
-	setFullScreenButton();
+			if ( raycaster.stereo !== undefined )
+				raycaster.stereo.onDocumentMouseMove( event );
+			else {
+
+				// Test of the old version of THREE.Raycaster
+				event.preventDefault();
+				var left = renderer.domElement.offsetLeft,
+					top = renderer.domElement.offsetTop,
+					size = new THREE.Vector2;
+				renderer.getSize( size );
+				mouse.x = ( event.clientX / size.x ) * 2 - 1 - ( left / size.x ) * 2;
+				mouse.y = -( event.clientY / size.y ) * 2 + 1 + ( top / size.y ) * 2;
+
+			}
+			if ( event.buttons != 1 )
+				return;
+
+			render();
+
+		}
+		function onDocumentMouseDown( event ) {
+
+			if ( raycaster.stereo !== undefined )
+				raycaster.stereo.onDocumentMouseDown( event );
+
+		}
+		function animate() {
+
+			requestAnimationFrame( animate );
+
+			render();
+
+		}
+
+		function render() {
+
+			if ( typeof stereoEffect === 'undefined' )
+				renderer.render( scene, camera );
+			else stereoEffect.render( scene, camera );
+
+		}
+
+		var canvasMouseOver = false,
+			elControls = elContainer.querySelectorAll( '.controls' ),
+			timeoutControls;
+
+		function setFullScreenButton( fullScreen ) {
+
+			var elMenuButtonFullScreen = document.getElementById( 'menuButtonFullScreen' );
+			if ( elMenuButtonFullScreen === null )
+				return;
+
+			if ( fullScreen === undefined )
+				fullScreen = !( ( stereoEffect === undefined ) || !stereoEffect.isFullScreen() );
+			if ( fullScreen ) {
+
+				elMenuButtonFullScreen.innerHTML = '⤦';
+				elMenuButtonFullScreen.title = 'Non Full Screen';
+
+			} else {
+
+				elMenuButtonFullScreen.innerHTML = '⤢';
+				elMenuButtonFullScreen.title = 'Full Screen';
+
+			}
+
+		}
 	</script>
-</body>
-	</html>
+	</body>
+</html>
