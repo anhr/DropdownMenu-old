@@ -24,8 +24,18 @@
 	<script src="../../../../three.js/dev/examples/js/controls/OrbitControls.js"></script>
 
 	<!--A lightweight graphical user interface for changing variables in JavaScript. https://github.com/dataarts/dat.gui -->
-	<!--<script src="../../../../three.js/dev/examples/js/libs/dat.gui.js"></script>-->
-	<script src="https://raw.githack.com/anhr/dat.gui/CustomController/build/dat.gui.js"></script>
+	<!--В настоящее время в
+		https://raw.githack.com/anhr/dat.gui/CustomController/build/dat.gui.js
+		находится старая версия dat.gui.js потому что я делаю pull request 
+		https://github.com/dataarts/dat.gui/pull/232 в котором пользователь donmccurdy просит удалить все файлы из папки build.
+		Поэтому я перенушу свежую версию dat.gui.js и dat.gui.min.js из
+		D:\My documents\MyProjects\webgl\three.js\GitHub\dat.gui\build
+		в
+		D:\My documents\MyProjects\webgl\three.js\GitHub\three.js\examples\js\libs
+		и обновляю ветку dev three.js github
+		-->
+	<script src="../../../../three.js/dev/examples/js/libs/dat.gui.js"></script>
+	<!--<script src="https://raw.githack.com/anhr/dat.gui/CustomController/build/dat.gui.js"></script>-->
 	
 
 	<script src="../../../../three.js/dev/examples/js/effects/StereoEffect.js"></script>

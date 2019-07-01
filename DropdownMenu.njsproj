@@ -32,6 +32,9 @@
     <Content Include="Examples\html\custom.css" />
     <Content Include="Examples\html\gui.css" />
     <Content Include="Examples\html\index.html" />
+    <Content Include="Examples\html\indexDebug.html">
+      <SubType>Code</SubType>
+    </Content>
     <Content Include="Examples\module\build\treeElementExample.js" />
     <Content Include="Examples\module\build\treeElementExample.js.map" />
     <Content Include="Examples\module\build\treeElementExample.module.js" />
