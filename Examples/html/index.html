@@ -4,29 +4,25 @@
 <head>
 	<meta charset="utf-8" />
 	<title>Menu</title>
+
+	<!--for mobile devices-->
+	<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+
 	<meta name="author" content="Andrej Hristoliubov https://anhr.github.io/AboutMe/">
 
-	<!--------------global links-------------------------------->
+	<!-- ===============================global links=============================================== -->
 
-	<script src="../../build/dropdownMenu.js"></script>
-	<!--<script src="../../build/dropdownMenu.min.js"></script>-->
-	<!--<script src="https://raw.githack.com/anhr/DropdownMenu/master/build/dropdownMenu.js"></script>-->
+	<script src="https://raw.githack.com/anhr/DropdownMenu/master/build/dropdownMenu.js"></script>
 	<!--<script src="https://raw.githack.com/anhr/DropdownMenu/master/build/dropdownMenu.min.js"></script>-->
-
 	<!--Three.js-->
-	<!--
 	<script src="https://raw.githack.com/anhr/three.js/dev/build/three.js"></script>
 	<script src="https://raw.githack.com/anhr/three.js/dev/examples/js/WebGL.js"></script>
 	<script src="https://raw.githack.com/anhr/three.js/dev/examples/js/controls/OrbitControls.js"></script>
-	-->
-	<script src="../../../../three.js/dev/build/three.js"></script>
-	<script src="../../../../three.js/dev/examples/js/WebGL.js"></script>
-	<script src="../../../../three.js/dev/examples/js/controls/OrbitControls.js"></script>
 
 	<!--A lightweight graphical user interface for changing variables in JavaScript. https://github.com/dataarts/dat.gui -->
 	<!--В настоящее время в
 		https://raw.githack.com/anhr/dat.gui/CustomController/build/dat.gui.js
-		находится старая версия dat.gui.js потому что я делаю pull request 
+		находится старая версия dat.gui.js потому что я делаю pull request
 		https://github.com/dataarts/dat.gui/pull/232 в котором пользователь donmccurdy просит удалить все файлы из папки build.
 		Поэтому я перенушу свежую версию dat.gui.js и dat.gui.min.js из
 		D:\My documents\MyProjects\webgl\three.js\GitHub\dat.gui\build
@@ -35,51 +31,39 @@
 		и обновляю ветку dev three.js github
 		-->
 	<script src="https://raw.githack.com/anhr/three.js/dev/examples/js/libs/dat.gui.js"></script>
-	<!--<script src="https://raw.githack.com/anhr/dat.gui/CustomController/build/dat.gui.js"></script>-->
-	
 
-	<script src="../../../../three.js/dev/examples/js/effects/StereoEffect.js"></script>
-	<script src="../../../../three.js/dev/src/objects/SpriteText.js"></script>
+	<script src="https://raw.githack.com/anhr/three.js/dev/examples/js/effects/StereoEffect.js"></script>
 
 	<!--Cube-->
-	<script src="../../../../three.js/dev/examples/js/geometries/ConvexGeometry.js"></script>
-	<script src="../../../../three.js/dev/examples/js/QuickHull.js"></script>
+	<script src="https://raw.githack.com/anhr/three.js/dev/examples/js/geometries/ConvexGeometry.js"></script>
+	<script src="https://raw.githack.com/anhr/three.js/dev/examples/js/QuickHull.js"></script>
 
 	<!--Attention! Load controllerPlay.js file after StereoEffect.js if you want to localise controllerPlay buttons -->
-	<script src="https://raw.githack.com/anhr/controllerPlay/master/build/controllerPlay.js"></script>
+	<!--<script src="https://raw.githack.com/anhr/controllerPlay/master/build/controllerPlay.js"></script>-->
+	<script src="https://raw.githack.com/anhr/controllerPlay/master/build/controllerPlay.min.js"></script>
 
-	<!----------------------------local links------------------------------------------>
-
+	<!-- ================================local links======================================== -->
 	<!--<script src="../../build/dropdownMenu.js"></script>-->
 	<!--<script src="../../build/dropdownMenu.min.js"></script>-->
-
 	<!--Three.js-->
 	<!--
 	<script src="../../../threejs/three.js/build/three.js"></script>
 	<script src="../../../threejs/three.js/examples/js/WebGL.js"></script>
 	<script src="../../../threejs/three.js/examples/js/controls/OrbitControls.js"></script>
 	-->
-
 	<!--A lightweight graphical user interface for changing variables in JavaScript. https://github.com/dataarts/dat.gui -->
 	<!--<script src="../../../threejs/dat.gui/build/dat.gui.js"></script>-->
-
-	<!--
-	<script src="../../../threejs/three.js/examples/js/effects/StereoEffect.js"></script>
-	<script src="../../../threejs/three.js/src/objects/SpriteText.js"></script>
-	-->
-
+	<!--<script src="../../../nodejs/datgui/build/dat.gui.js"></script>-->
+	<!--<script src="../../../threejs/three.js/examples/js/effects/StereoEffect.js"></script>-->
 	<!--Cube-->
 	<!--
 	<script src="../../../threejs/three.js/examples/js/geometries/ConvexGeometry.js"></script>
 	<script src="../../../threejs/three.js/examples/js/QuickHull.js"></script>
 	-->
-
 	<!--Attention! Load controllerPlay.js file after StereoEffect.js if you want to localise controllerPlay buttons -->
 	<!--<script src="../../../nodejs/controllerPlay/build/controllerPlay.js"></script>-->
-	<!--<script src="../../../nodejs/customController/build/customControllers.js"></script>-->
-
-	<!---------------------------------------------------------------------->
-
+	<!--<script src="../../../nodejs/controllerPlay/build/controllerPlay.min.js"></script>-->
+	<!-- ============================================================================== -->
 	<!--Attention! Load custom.css file after dropdownMenu.js file for correctly priority of the styles-->
 	<link rel="stylesheet" href="custom.css" type="text/css">
 	<link rel="stylesheet" href="gui.css" type="text/css">
@@ -339,75 +323,64 @@
 		</div>
 	</div>
 	<script>
+
+		if ( WEBGL.isWebGLAvailable() === false ) {
+
+			document.body.appendChild( WEBGL.getWebGLErrorMessage() );
+			alert( WEBGL.getWebGLErrorMessage().innerHTML );
+
+		}
+
 		var elContainer = document.getElementById( "containerDSE" ),
 			elCanvas = elContainer.querySelector( 'canvas' );
 
-		//dat-gui JavaScript Controller Library
-		//https://github.com/dataarts/dat.gui
-		//			var gui = new dat.GUI();
-		var gui = new dat.GUI( {
+		function createMenu() {
 
-			autoPlace: false,
-			//			closed: true,//Icorrect "Open Controls" button name
+			var menu = [];
+			if ( stereoEffect )
+				menu.push( {
 
-		} );
+					name: '⚭',
+					title: 'Stereo effects',
+					id: 'menuButtonStereoEffects',
+					drop: 'up',
+					items: [
 
-		//Close gui window
-		gui.__closeButton.click();
+						{
+							name: 'Mono',
+							onclick: function ( event ) {
 
-		//Thanks to https://stackoverflow.com/questions/41404643/place-dat-gui-strictly-inside-three-js-scene-without-iframe
-		var customContainer = document.getElementById( 'my-gui-container' );
-		customContainer.appendChild( gui.domElement );
+								if ( stereoEffect.setSpatialMultiplex !== undefined )
+									stereoEffect.setSpatialMultiplex( THREE.StereoEffectParameters.spatialMultiplexsIndexs.Mono );
+								else stereoEffect.options.spatialMultiplex = THREE.StereoEffectParameters.spatialMultiplexsIndexs.Mono;
 
-		/*
-				var folderPlay = gui.addFolder( 'Play' );
-				//folderPlay.open();
-		*/
-		dropdownMenu.create( [
+							}
+						},
+						{
+							name: 'Side by side',
+							onclick: function ( event ) {
 
-			{
+								if ( stereoEffect.setSpatialMultiplex !== undefined )
+									stereoEffect.setSpatialMultiplex( THREE.StereoEffectParameters.spatialMultiplexsIndexs.SbS );
+								else stereoEffect.options.spatialMultiplex = THREE.StereoEffectParameters.spatialMultiplexsIndexs.SbS;
 
-				name: '⚭',
-				title: 'Stereo effects',
-				id: 'menuButtonStereoEffects',
-				drop: 'up',
-				items: [
+							}
+						},
+						{
+							name: 'Top and bottom',
+							onclick: function ( event ) {
 
-					{
-						name: 'Mono',
-						onclick: function ( event ) {
+								if ( stereoEffect.setSpatialMultiplex !== undefined )
+									stereoEffect.setSpatialMultiplex( THREE.StereoEffectParameters.spatialMultiplexsIndexs.TaB );
+								else stereoEffect.options.spatialMultiplex = THREE.StereoEffectParameters.spatialMultiplexsIndexs.TaB;
 
-							if ( stereoEffect.setSpatialMultiplex !== undefined )
-								stereoEffect.setSpatialMultiplex( THREE.StereoEffectParameters.spatialMultiplexsIndexs.Mono );
-							else stereoEffect.options.spatialMultiplex = THREE.StereoEffectParameters.spatialMultiplexsIndexs.Mono;
+							}
+						},
 
-						}
-					},
-					{
-						name: 'Side by side',
-						onclick: function ( event ) {
+					],
 
-							if ( stereoEffect.setSpatialMultiplex !== undefined )
-								stereoEffect.setSpatialMultiplex( THREE.StereoEffectParameters.spatialMultiplexsIndexs.SbS );
-							else stereoEffect.options.spatialMultiplex = THREE.StereoEffectParameters.spatialMultiplexsIndexs.SbS;
-
-						}
-					},
-					{
-						name: 'Top and bottom',
-						onclick: function ( event ) {
-
-							if ( stereoEffect.setSpatialMultiplex !== undefined )
-								stereoEffect.setSpatialMultiplex( THREE.StereoEffectParameters.spatialMultiplexsIndexs.TaB );
-							else stereoEffect.options.spatialMultiplex = THREE.StereoEffectParameters.spatialMultiplexsIndexs.TaB;
-
-						}
-					},
-
-				],
-
-			},
-			{
+				} );
+			menu.push( {
 
 				//				name: '',
 				//				right: true,
@@ -421,28 +394,32 @@
 
 				}
 
-			},
-
-		],
-			{
-
-				elParent: elContainer,
-				canvas: elCanvas,
-				decorations: 'Transparent',
-
 			} );
+			dropdownMenu.create( menu,
+				{
 
-		setFullScreenButton();
+					elParent: elContainer,
+					canvas: elCanvas,
+					decorations: 'Transparent',
 
-		if ( WEBGL.isWebGLAvailable() === false ) {
+				} );
 
-			document.body.appendChild( WEBGL.getWebGLErrorMessage() );
-			alert( WEBGL.getWebGLErrorMessage().innerHTML );
+			setFullScreenButton();
 
 		}
-		var camera, scene, renderer, controls, stereoEffect, raycaster, cubeType = 'cube', group;
-		init();
-		animate();
+
+		var camera, scene, renderer, controls, stereoEffect/*, raycaster*/, cubeType = 'cube', group;
+		try {
+
+			init();
+			animate();
+			createMenu();
+
+		} catch ( e ) {
+
+			alert( 'init failed! ' + e.message );
+
+		}
 
 		function init() {
 
@@ -492,7 +469,6 @@
 			controls.update();
 
 			//StereoEffect
-
 			stereoEffect = new THREE.StereoEffect( renderer, {
 
 				spatialMultiplex: THREE.StereoEffectParameters.spatialMultiplexsIndexs.Mono, //.SbS,
@@ -519,7 +495,7 @@
 			light = new THREE.PointLight( 0xffffff, 1 );
 			light.position.copy( new THREE.Vector3( -2, -2, -2 ) );
 			scene.add( light );
-
+/*
 			//raycaster
 
 			raycaster = new THREE.Raycaster();
@@ -545,13 +521,30 @@
 				}
 
 			} );
-
+*/
 			group = new THREE.Group();
 			scene.add( group );
 
+			//dat-gui JavaScript Controller Library
+			//https://github.com/dataarts/dat.gui
+	//			var gui = new dat.GUI();
+			var gui = new dat.GUI( {
+
+				autoPlace: false,
+				//			closed: true,//Icorrect "Open Controls" button name
+
+			} );
+
+			//Close gui window
+			if ( gui.__closeButton.click !== undefined )//for compatibility with Safari 5.1.7 for Windows
+				gui.__closeButton.click();
+
+			//Thanks to https://stackoverflow.com/questions/41404643/place-dat-gui-strictly-inside-three-js-scene-without-iframe
+			document.getElementById( 'my-gui-container' ).appendChild( gui.domElement );
+
 			//PlayController
 			var colorRed = new THREE.Color( 0xff0000 );
-			gui.add( new controllerPlay.PlayController( group, {
+			gui.add( controllerPlay.create( group, {
 
 				onShowObject3D: function ( objects3DItem ) {
 
@@ -577,6 +570,7 @@
 				},
 
 			} ) );
+
 /*
 			gui.add( new customcontrollers.PlayController( group, {
 
@@ -605,56 +599,6 @@
 
 			} ) );
 */
-			//			controllerPlayRate3.domElement.title = 'Rate of changing of 3D obects per second.';
-			/*
-						var controllerPlayRate = gui.add( new dat.controllers.CustomController( {
-
-							playRate: 1,
-							property: function ( customController ) {
-
-								return controllerPlay.create( group, customController, {
-
-									onSelectedObject3D: function ( objects3DItem ) {
-
-										objects3DItem.material.color = colorRed;
-										objects3DItem.visible = true;
-
-									},
-									onUnselectedObject3D: function ( objects3DItem ) {
-
-										objects3DItem.visible = false;//hide object3D
-
-									},
-									onRestoreObject3D: function ( objects3DItem ) {
-
-										objects3DItem.material.color = objects3DItem.userData.color;
-										objects3DItem.visible = true;
-
-									},
-
-								} );
-
-							},
-
-						}, 'playRate', 1, 25, 1 ) ).onChange( function ( value ) {
-
-							onChangePlayRate( value );
-
-						} );
-						controllerPlayRate.domElement.title = 'Rate of changing of 3D obects per second.';
-			*/
-			/*
-					//PrevAndNextController
-					folderPlay.add( new dat.controllers.CustomController( {
-
-						property: function () {
-
-							return controllerPrevAndNext();
-
-						},
-
-					} ) );
-			*/
 			//Points
 
 			var points = new THREE.Points( new THREE.BufferGeometry().setFromPoints( [
@@ -674,10 +618,10 @@
 			points.userData.color = points.material.color;
 			//			scene.add( points );
 			group.add( points );
-
+/*
 			if ( raycaster.stereo !== undefined )
 				raycaster.stereo.addParticles( points );
-			//			else particles.push( points );
+*/
 
 			//cubes
 
@@ -696,8 +640,10 @@
 				cube.userData.color = cube.material.color;
 				group.add( cube );
 
+/*
 				if ( raycaster.stereo !== undefined )
 					raycaster.stereo.addParticles( cube );
+*/
 
 			}
 			addCube( new THREE.Vector3( -1, 0, 0 ), 0xffffff );
@@ -729,9 +675,9 @@
 		}
 		function onDocumentMouseMove( event ) {
 
-			if ( raycaster.stereo !== undefined )
+			/*if ( raycaster.stereo !== undefined )
 				raycaster.stereo.onDocumentMouseMove( event );
-			else {
+			else */{
 
 				// Test of the old version of THREE.Raycaster
 				event.preventDefault();
@@ -751,8 +697,10 @@
 		}
 		function onDocumentMouseDown( event ) {
 
+/*
 			if ( raycaster.stereo !== undefined )
 				raycaster.stereo.onDocumentMouseDown( event );
+*/
 
 		}
 		function animate() {
