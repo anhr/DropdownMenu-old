@@ -42,7 +42,7 @@ Creates new menu.
 |  |  |  | Custom decoration: |
 |  | <code>String</code> | 'Custom' | please edit the custom.css file from my example if you want a custom decoration of your menu. |
 
-#### Example. Simple menu.**  
+#### Example. Simple menu.
 ```
 <script>
 dropdownMenu.create( [
@@ -85,7 +85,7 @@ dropdownMenu.create( [
 </script>
 ```
 
-#### Example. Drop menu to the left or/and up.**  
+#### Example. Drop menu to the left or/and up.
 ```
 <script>
 dropdownMenu.create( [
@@ -168,7 +168,7 @@ dropdownMenu.create( [
 </script>
 ```
 
-#### Example. Button inside canvas.**  
+#### Example. Button inside canvas.
 ```
 <div class="container" id="containerDSE">
 	<canvas id="canvas"></canvas>
