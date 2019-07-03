@@ -242,18 +242,15 @@ Windows 10
 
 Android 6.0.1
 
-	Chrome 74 - Some very strange issues if you append into your web page three and more menus and include an elements between menus.
-		Please see "Attention! Line below is not compatible with Android mobile version of the Chrome." comment
-		in https://github.com/anhr/DropdownMenu/blob/master/Examples/html/index.html file for more details.
+	Chrome 74 
 
-
-	Samsung Galaxy S5 Internet 9.2 - Same issues as Chrome
+	Samsung Galaxy S5 Internet 9.2
 
 	FireFox 67
 
 	Opera 52
 
-	Opera Mini 43 - Same issues as Chrome
+	Opera Mini 43
 
 LG Smart tv
 
