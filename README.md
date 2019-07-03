@@ -42,7 +42,7 @@ Creates new menu.
 |  |  |  | Custom decoration: |
 |  | <code>String</code> | 'Custom' | please edit the custom.css file from my example if you want a custom decoration of your menu. |
 
-**Example. Simple menu.**  
+#### Example. Simple menu.**  
 ```
 <script>
 dropdownMenu.create( [
