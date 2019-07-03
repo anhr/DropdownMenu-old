@@ -85,7 +85,7 @@ dropdownMenu.create( [
 </script>
 ```
 
-**Example. Drop menu to the left or/and up.**  
+#### Example. Drop menu to the left or/and up.**  
 ```
 <script>
 dropdownMenu.create( [
@@ -168,7 +168,7 @@ dropdownMenu.create( [
 </script>
 ```
 
-**Example. Button inside canvas.**  
+#### Example. Button inside canvas.**  
 ```
 <div class="container" id="containerDSE">
 	<canvas id="canvas"></canvas>
