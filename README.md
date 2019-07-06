@@ -32,6 +32,9 @@ Creates new menu.
 | [arrayMenuItem.items] | <code>Array</code> |  | array of submenu items. Same as menu item. Optional. |
 | [arrayMenuItem.onclick] | <code>Function</code> |  | function(event) called when user has clicked a menu item. event - event details. Optional. |
 | [arrayMenuItem.drop] | <code>String or Object</code> |  | direction of drop of the submenu. Following directions is available: If string then "up" - drop submenu to up. "left" - shift submenu to left. If object then following members is available: "up: true" and "left: true". |
+| [arrayMenuItem.radio] | <code>boolean</code> |  | true - defines a radio menu item. Optional. |
+| [arrayMenuItem.checkbox] | <code>boolean</code> |  | true - defines a checkbox menu item. Optional. |
+| [arrayMenuItem.checked] | <code>boolean</code> |  | true - checked state of a checkbox or radio menu item. Optional. |
 |  |  |  |  |
 | [options] | <code>Object</code> |  | Optional. Followed options is available: |
 | [options.elParent] | <code>HTMLElement</code> | "body" element | Parent element of new menu. Optional. |
