@@ -12,8 +12,11 @@
 
 	<!-- ===============================global links=============================================== -->
 
-	<script src="https://raw.githack.com/anhr/DropdownMenu/master/build/dropdownMenu.js"></script>
+	<!--<script src="https://raw.githack.com/anhr/DropdownMenu/master/build/dropdownMenu.js"></script>-->
 	<!--<script src="https://raw.githack.com/anhr/DropdownMenu/master/build/dropdownMenu.min.js"></script>-->
+
+	<!--<script src="https://raw.githack.com/anhr/menuPlay/master/build/menuPlay.js"></script>-->
+	<!--<script src="https://raw.githack.com/anhr/menuPlay/master/build/menuPlay.min.js"></script>-->
 
 	<!--Three.js-->
 	<script src="https://raw.githack.com/anhr/three.js/dev/build/three.js"></script>
@@ -41,12 +44,18 @@
 
 	<!--Attention! Load controllerPlay.js file after StereoEffect.js if you want to localise controllerPlay buttons -->
 	<!--<script src="https://raw.githack.com/anhr/controllerPlay/master/build/controllerPlay.js"></script>-->
-	<script src="https://raw.githack.com/anhr/controllerPlay/master/build/controllerPlay.min.js"></script>
+	<!--<script src="https://raw.githack.com/anhr/controllerPlay/master/build/controllerPlay.min.js"></script>-->
 
 	<!-- ================================local links======================================== -->
 
-	<!--<script src="../../build/dropdownMenu.js"></script>-->
+	<!--For mobile device debugging-->
+	<!--<script src="../../../nodejs/dropdownMenu/build/dropdownMenu.js"></script>-->
+	<!--For desktop debugging-->
+	<script src="../../build/dropdownMenu.js"></script>
 	<!--<script src="../../build/dropdownMenu.min.js"></script>-->
+
+	<script src="../../../nodejs/menuPlay/build/menuPlay.js"></script>
+	<!--<script src="../../../nodejs/menuPlay/build/menuPlay.min.js"></script>-->
 
 	<!--Three.js-->
 	<!--
@@ -67,7 +76,7 @@
 	-->
 
 	<!--Attention! Load controllerPlay.js file after StereoEffect.js if you want to localise controllerPlay buttons -->
-	<!--<script src="../../../nodejs/controllerPlay/build/controllerPlay.js"></script>-->
+	<script src="../../../nodejs/controllerPlay/build/controllerPlay.js"></script>
 	<!--<script src="../../../nodejs/controllerPlay/build/controllerPlay.min.js"></script>-->
 
 	<!-- ============================================================================== -->
@@ -77,145 +86,254 @@
 	<link rel="stylesheet" href="gui.css" type="text/css">
 
 </head>
-		<body>
-			<p>
-				<a href='https://anhr.github.io/index.html' target="_blank">Home</a>
-				| <a href='https://github.com/anhr/DropdownMenu' target="_blank">GitHub</a>
-			</p>
-			<h1>node.js version of the DropdownMenu.</h1>
+	<body>
+		<p>
+			<a href='https://anhr.github.io/index.html' target="_blank">Home</a>
+			| <a href='https://github.com/anhr/DropdownMenu' target="_blank">GitHub</a>
+		</p>
+		<h1>node.js version of the DropdownMenu.</h1>
 
-			<h2>Simple menu.</h2>
-			<script>
-				dropdownMenu.create( [
+		<h2>Simple menu.</h2>
+		<script>
+			dropdownMenu.create( [
 
-					'Menu 1 ',
-					{
+				'Menu 1 ',
+				{
 
-						name: 'Menu 2 ',
-						items: [
+					name: 'Menu 2 ',
+					items: [
 
-							'Item 2.1',
-							{
-								name: 'Item 2.2',
-								onclick: function ( event ) {
+						'Item 2.1',
+						{
+							name: 'Item 2.2',
+							onclick: function ( event ) {
 
-									var message = 'Item 2.2 onclick';
-									//console.log( message );
-									alert( message )
+								var message = 'Item 2.2 onclick';
+								//console.log( message );
+								alert( message )
 
-								}
-							},
-
-						],
-
-					},
-					{
-
-						name: 'Menu 3',
-						onclick: function ( event ) {
-
-							var message = 'Menu 3 onclick';
-							//console.log( message );
-							alert( message )
+							}
 
 						},
 
-					},
+					],
 
-				] );
-			</script>
+				},
+				{
 
-			<h2>Drop menu to the left or/and up.</h2>
-			<h3><a href="../../styles/Decorations/gradient.css" target="_blank">Gradient decoration</a>.</h3>
-			<script>
-				dropdownMenu.create( [
+					name: 'Menu 3 ',
+					onclick: function ( event ) {
 
-					{
-
-						name: 'Drop up',
-						drop: 'up',
-						items: [
-
-							'up item 1',
-							{
-
-								name: 'up item 2',
-								onclick: function ( event ) {
-
-									var message = 'up item 2 onclick';
-									//console.log( message );
-									alert( message )
-
-								}
-
-							},
-
-						],
+						var message = 'Menu 3 onclick';
+						//console.log( message );
+						alert( message )
 
 					},
-					{
 
-						name: 'Left',
-						drop: 'left',
-						items: [
+				},
+				{
 
-							'left item 1',
-							{
+					name: 'Selector ',
+					title: 'Please select menu items',
+					items: [
 
-								name: 'left item 2',
-								onclick: function ( event ) {
-
-									var message = 'left item 2 onclick';
-									//console.log( message );
-									alert( message )
-
-								}
-
-							},
-
-						],
-
-					},
-					{
-
-						name: 'Up left',
-						drop:
 						{
 
-							left: true,
-							up: true,
+							name: 'Checked',
+							checked: true,
+							onclick: function ( event ) {
+
+								var message = 'Checked onclick';
+								//console.log( message );
+								alert( message )
+
+							}
 
 						},
-						items: [
+						{
 
-							'up left item 1',
-							{
+							name: 'Radio 1',
+							radio: true,
 
-								name: 'up left item 2',
-								onclick: function ( event ) {
+						},
+						{
 
-									var message = 'up left item 2 onclick';
-									//console.log( message );
-									alert( message )
+							name: 'Radio 2',
+							radio: true,
+							checked: true,
 
-								}
+						},
+						{
 
-							},
+							name: 'Checkbox 1',
+							checkbox: true,
 
-						],
+						},
+						{
+
+							name: 'Checkbox 2',
+							checkbox: true,
+							checked: true,
+
+						},
+						'Unselectable Item',
+
+					],
+
+				},
+
+			] );
+		</script>
+
+		<h2>Drop menu to the left or/and up.</h2>
+		<h3><a href="../../styles/Decorations/gradient.css" target="_blank">Gradient decoration</a>.</h3>
+		<script>
+			dropdownMenu.create( [
+
+				{
+
+					name: 'Drop up',
+					drop: 'up',
+					items: [
+
+						'up item 1',
+						{
+
+							name: 'up item 2',
+							onclick: function ( event ) {
+
+								var message = 'up item 2 onclick';
+								//console.log( message );
+								alert( message )
+
+							}
+
+						},
+
+					],
+
+				},
+				{
+
+					name: 'Left',
+					drop: 'left',
+					items: [
+
+						'left item 1',
+						{
+
+							name: 'left item 2',
+							onclick: function ( event ) {
+
+								var message = 'left item 2 onclick';
+								//console.log( message );
+								alert( message )
+
+							}
+
+						},
+
+					],
+
+				},
+				{
+
+					name: 'Up left',
+					drop:
+					{
+
+						left: true,
+						up: true,
 
 					},
+					items: [
 
-				], {
+						'up left item 1',
+						{
 
-						decorations: 'Gradient',
+							name: 'up left item 2',
+							onclick: function ( event ) {
 
-					} );
-			</script>
+								var message = 'up left item 2 onclick';
+								//console.log( message );
+								alert( message )
 
-			<!--Attention! Line below is not compatible with Android mobile version of the Chrome.-->
+							}
+
+						},
+
+					],
+
+				},
+				{
+
+					name: 'Radio ',
+					title: 'Please select menu items',
+					drop:
+					{
+
+						left: true,
+						up: true,
+
+					},
+					items: [
+
+						{
+
+							name: 'Radio 1',
+							radio: true,
+
+						},
+						{
+
+							name: 'Radio 2',
+							radio: true,
+							checked: true,
+
+						},
+
+					],
+
+				},
+				{
+
+					name: 'Checkbox ',
+					title: 'Please select menu items',
+					drop:
+					{
+
+						left: true,
+						up: true,
+
+					},
+					items: [
+
+						{
+
+							name: 'Checkbox 1',
+							checkbox: true,
+
+						},
+						{
+
+							name: 'Checkbox 2',
+							checkbox: true,
+							checked: true,
+
+						},
+
+					],
+
+				},
+
+			], {
+
+					decorations: 'Gradient',
+
+				} );
+		</script>
+
 	<h3><a href="custom.css" target="_blank">Custom decoration</a>.</h3>
-	<!--<p>Custom</p>-->
 
 	<script>
 		dropdownMenu.create( [
@@ -314,12 +432,10 @@
 			} );
 	</script>
 
-	<!--Attention! Line below is not compatible with Android mobile version of the Chrome.-->
 	<h2>
 		Dropdown menu inside <a href="https://threejs.org/" target="_blank">Three.js</a> canvas.
 		<a href="../../styles/Decorations/transparent.css" target="_blank"> Transparent decoration</a>.
 	</h2>
-	<!--<h3>Canvas</h3>-->
 	<p>Please move mouse over canvas. Now you can see "⚭" and "⤢" buttons on the bottom of the canvas.</p>
 
 	<div class="container" id="containerDSE">
@@ -342,8 +458,16 @@
 		var elContainer = document.getElementById( "containerDSE" ),
 			elCanvas = elContainer.querySelector( 'canvas' );
 
+
 		function createMenu() {
 
+			if ( typeof menuPlay !== 'undefined' )
+				menuPlay.create( elContainer, elCanvas, {
+
+					stereoEffect: stereoEffect,
+
+				} );
+/*
 			var menu = [];
 			if ( stereoEffect )
 				menu.push( {
@@ -436,6 +560,11 @@
 			} );
 			menu.push( {
 
+				name: '<input type="range" min="1" max="100" value="50" class="slider" id="myRange">',
+
+			} );
+			menu.push( {
+
 				style: 'float: right;',
 				id: "menuButtonFullScreen",
 				onclick: function ( event ) {
@@ -457,10 +586,11 @@
 				} );
 
 			setFullScreenButton();
-
+*/
 		}
 
 		var camera, scene, renderer, controls, stereoEffect/*, raycaster*/, cubeType = 'cube', group, playController;
+/*
 		try {
 
 			init();
@@ -472,6 +602,10 @@
 			alert( 'init failed! ' + e.message );
 
 		}
+*/
+		init();
+		animate();
+		createMenu();
 
 		function init() {
 
@@ -491,7 +625,7 @@
 			renderer = new THREE.WebGLRenderer( {
 
 				antialias: true,
-				canvas: elContainer.querySelector( 'canvas' ),//document.getElementById( 'canvas' ),
+				canvas: elCanvas,
 
 			} );
 			renderer.setPixelRatio( window.devicePixelRatio );
@@ -509,6 +643,9 @@
 					elContainer.style.left = elCanvas.style.left;
 					elContainer.style.top = elCanvas.style.top;
 					elContainer.style.position = elCanvas.style.position;
+
+					if ( typeof menuPlay !== 'undefined' )
+						menuPlay.setSize( width, height );
 
 				}, 0 );
 
@@ -598,9 +735,10 @@
 			var colorRed = new THREE.Color( 0xff0000 );
 			playController = controllerPlay.create( group, {
 
-				onShowObject3D: function ( objects3DItem ) {
+				onShowObject3D: function ( objects3DItem, index ) {
 
 					objects3DItem.visible = true;
+					menuPlay.setIndex( index );
 
 				},
 				onHideObject3D: function ( objects3DItem ) {
@@ -608,10 +746,11 @@
 					objects3DItem.visible = false;//hide object3D
 
 				},
-				onSelectedObject3D: function ( objects3DItem ) {
+				onSelectedObject3D: function ( objects3DItem, index ) {
 
 					objects3DItem.material.color = colorRed;
 					objects3DItem.visible = true;
+					menuPlay.setIndex( index );
 
 				},
 				onRestoreObject3D: function ( objects3DItem ) {
@@ -638,34 +777,6 @@
 			} );
 			gui.add( playController );
 
-/*
-			gui.add( new customcontrollers.PlayController( group, {
-
-				onShowObject3D: function ( objects3DItem ) {
-
-					objects3DItem.visible = true;
-
-				},
-				onHideObject3D: function ( objects3DItem ) {
-
-					objects3DItem.visible = false;//hide object3D
-
-				},
-				onSelectedObject3D: function ( objects3DItem ) {
-
-					objects3DItem.material.color = colorRed;
-					objects3DItem.visible = true;
-
-				},
-				onRestoreObject3D: function ( objects3DItem ) {
-
-					objects3DItem.material.color = objects3DItem.userData.color;
-					objects3DItem.visible = true;
-
-				},
-
-			} ) );
-*/
 			//Points
 
 			var points = new THREE.Points( new THREE.BufferGeometry().setFromPoints( [
@@ -685,10 +796,6 @@
 			points.userData.color = points.material.color;
 			//			scene.add( points );
 			group.add( points );
-/*
-			if ( raycaster.stereo !== undefined )
-				raycaster.stereo.addParticles( points );
-*/
 
 			//cubes
 

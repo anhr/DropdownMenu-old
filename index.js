@@ -1,4 +1,4 @@
-/**
+﻿/**
  * node.js version of DropdownMenu
  * 
  * @author Andrej Hristoliubov https://anhr.github.io/AboutMe/
@@ -28,14 +28,20 @@ loadScript.sync( '../../styles/Decorations/gradient.css', optionsStyle );
 
 /**
  * Creates new menu
- * @param {String[]|Object[]} arrayMenu array of menu and submenu items. If string then menu item name. If object then options of the new menu item:
- * [name] {String|HTMLElement} - If string then menu item name. If HTMLElement then item element. Optional.
- * [title] {String} - menu item title. Optional.
- * [id] {String} - menu item identifier. Optional.
- * [style] {String} - menu item style. Example: "float: right;" Optional.
- * [items] {Array} - array of submenu items. Same as menu item. Optional.
- * [onclick] {Function} - function(event) called when user has clicked a menu item. event - event details. Optional.
- * [drop] - direction of drop of the submenu. Following directions is available: If string then "up" - drop submenu to up. "left" - shift submenu to left. If object then following members is available: "up: true" and "left: true".
+ * @param {Object[]} arrayMenu array of menu and submenu items. If string then menu item name. If object then options of the new menu item:
+ * @param {String|HTMLElement} [arrayMenu.name] if string then menu item name. If HTMLElement then item element. Optional.
+ * @param {String} [arrayMenu.title] menu item title. Optional.
+ * @param {String} [arrayMenu.id] menu item identifier. Optional.
+ * @param {String} [arrayMenu.style] menu item style. Example: "float: right;" Optional.
+ * @param {Array} [arrayMenu.items] array of submenu items. Same as menu item. Optional.
+ * @param {Function} [arrayMenu.onclick] function(event) called when user has clicked a menu item. event - event details. Optional.
+ * @param {Object} [arrayMenu.drop] direction of drop of the submenu. Following directions is available: If string then "up" - drop submenu to up. "left" - shift submenu to left. If object then following members is available: "up: true" and "left: true".
+ * @param {boolean} [arrayMenu.drop.up] true - drop submenu to up.
+ * @param {boolean} [arrayMenu.drop.left] true - shift submenu to left.
+ * @param {boolean} [arrayMenu.radio] true - defines a radio menu item.
+ * @param {boolean} [arrayMenu.checkbox] true - defines a checkbox menu item.
+ * @param {boolean} [arrayMenu.checked] true - checked state of a checkbox or radio menu item.
+ *
  * @param {Object} [options] followed options is available. Optional.
  * @param {HTMLElement} [options.elParent] Parent element of new menu. Optional. Default is "body" element.
  * @param {HTMLElement} [options.canvas] canvas element. Use if you want put a menu inside a canvas. See "button inside canvas" example below for details. Optional.
@@ -172,37 +178,13 @@ export function create( arrayMenu, options ) {
 	var elMenu = document.createElement( 'menu' );
 	if ( options.elParent.classList.contains( "container" ) )
 		elMenu.className = 'controls';
-/*
-	if ( options.menu ) {
-		if ( options.menu.onmouseout )
-			elMenu.onmouseout = options.menu.onmouseout;
-		if ( options.menu.onmousemove )
-			elMenu.onmousemove = options.menu.onmousemove;
-		if ( options.menu.onmouseout )
-			elMenu.onmouseout = options.menu.onmouseout;
-	}
-*/
+
 	function displayControls() {
 
-/*
-		elControls = elContainer.querySelectorAll( '.controls' );
-		elControls.forEach( function ( control ) {
-
-			control.style.opacity = 1;
-
-		} );
-*/
 		elMenu.style.opacity = 1;
 		clearTimeout( timeoutControls );
 		timeoutControls = setTimeout( function () {
 
-/*
-			elControls.forEach( function ( control ) {
-
-				control.style.opacity = 0;
-
-			} );
-*/
 			elMenu.style.opacity = 0;
 
 		}, 5000 );
@@ -213,51 +195,31 @@ export function create( arrayMenu, options ) {
 		elMenu.style.opacity = 0;
 		options.canvas.onmouseout = function ( event ) {
 
-/*
-			elControls = elContainer.querySelectorAll( '.controls' );
-			elControls.forEach( function ( control ) {
-
-				control.style.opacity = 0;
-
-			} );
-*/
 			elMenu.style.opacity = 0;
 
 		}
 		options.canvas.onmousemove = function ( event ) {
 
 			displayControls();
-//			elMenu.style.opacity = 1;
 
 		}
-/*
-		elMenu.onmouseout = function ( event ) {
-
-			elMenu.style.opacity = 0;
-
-		}
-*/
 		elMenu.onmousemove = function ( event ) {
 
 			displayControls();
-//			elMenu.style.opacity = 1;
 
 		}
 
 	}
 	options.elParent.appendChild( elMenu );
 
-//	var menuButtonStyle, top = 0;
 	arrayMenu.forEach( function ( menuItem ) {
 
 		var dropdownChild = 'dropdown-child';
-		var elSpan = document.createElement( 'span' );
 		function moveUpLeft( drop ) {
 
 			setTimeout( function () {
 
 				var display = elDropdownChild.style.display;
-//				var borderWidth = getMenuButtonBorderWidth();
 				elDropdownChild.style.display = 'block';
 				if ( drop.up )
 					elDropdownChild.style.top = '-' + ( elDropdownChild.offsetHeight/* + borderWidth*/ ) + 'px';
@@ -273,18 +235,19 @@ export function create( arrayMenu, options ) {
 
 		//Create menuButton class element
 		var elMenuButton = document.createElement( 'span' );
-		elMenuButton.className = 'menuButton' +
-			( options.decorations === undefined ? '' : ' menuButton' + options.decorations );
-//			+ ( menuItem.right ? ' right' : '' );//move menu item to the right border of the parent element
+		elMenuButton.className =
+			'menuButton' + ( options.decorations === undefined ? '' : ' menuButton' + options.decorations );
 
 		if ( menuItem.style !== undefined )
+			elMenuButton.style.cssText = menuItem.style;
+
+		if ( menuItem.radio !== undefined )
 			elMenuButton.style.cssText = menuItem.style;
 
 		if ( menuItem.onclick !== undefined )
 			elMenuButton.onclick = menuItem.onclick;
 		if ( menuItem.id !== undefined )
 			elMenuButton.id = menuItem.id;
-		elSpan.appendChild( elMenuButton );
 
 		var name;
 		if ( typeof menuItem === 'string' )
@@ -297,34 +260,25 @@ export function create( arrayMenu, options ) {
 				elMenuButton.id = menuItem.id;
 			if ( menuItem.title )
 				elMenuButton.title = menuItem.title;
-/*
-			if ( menuItem.onmouseover )
-				elMenuButton.onmouseover = menuItem.onmouseover;
-			if ( menuItem.onmouseout )
-				elMenuButton.onmouseout = menuItem.onmouseout;
-*/
 
 		}
 
 		//Create name span
-		var elName = document.createElement( 'span' );
 		switch ( typeof name ) {
 			case "object":
-				elName.appendChild( name );
+				elMenuButton.appendChild( name );
 				break;
 			case "string":
 			case "undefined":
-				elName.innerHTML = name;
+				elMenuButton.innerHTML = name;
 				break;
 			default: console.error( 'Invalid typeof name: ' + typeof name );
 		}
-		elMenuButton.appendChild( elName );
 
 		//Create dropdown-child items
 		if ( menuItem.items ) {
 
 			var elDropdownChild = document.createElement( 'span' );
-//			elDropdownChild.className = dropdownChild;
 			elDropdownChild.className = dropdownChild + ' ' + dropdownChild + ( options.decorations === undefined ? 'Default' : options.decorations );
 			elDropdownChild.title = '';
 			elMenuButton.appendChild( elDropdownChild );
@@ -335,26 +289,89 @@ export function create( arrayMenu, options ) {
 			menuItem.items.forEach( function ( itemItem ) {
 
 				//Create name span
-				var elName = document.createElement( 'nobr' );
+				var elName = document.createElement( 'nobr' ),
+					classChecked = 'checked';
+				function getItemName(item) {
 
+					var str = typeof item === 'string' ?
+						item :
+							item.radio === true ?
+							( item.checked ? '◉' : '◎' ) + ' ' + item.name
+							: item.checkbox === true ? ( item.checked ? '☑' : '☐' ) + ' ' + item.name : item.name;//✓🗹
+					//console.log(str);
+					return str;
+
+				}
+				function getElementFromEvent( event ) {
+					if ( !event ) event = window.event;//for IE6
+					return event.target || event.srcElement;
+				}
 				var name;
 				if ( typeof itemItem === 'string' )
 					name = itemItem;
 				else {
 
 					name = itemItem.name;
-					if ( itemItem.onclick )
-						elName.onclick = function ( event ) {
+					elName.onclick = function ( event ) {
 
-//							displayDropdownChild( event.currentTarget.parentElement );
+						if ( itemItem.radio === true ) {
+
+//							console.log( 'radio onclick ' + elName.innerHTML );
+							menuItem.items.forEach( function ( item ) {
+
+								if ( item.radio === true ) {
+
+									if ( getElementFromEvent( event ) === item.elName ) {
+
+										item.checked = true;
+										item.elName.classList.add( classChecked );
+
+									} else {
+
+										item.checked = false;
+										item.elName.classList.remove( classChecked );
+
+									}
+									item.elName.innerHTML = getItemName( item );
+
+								}
+
+							} );
+
+						} else if ( itemItem.checkbox === true ) {
+
+//							console.log( 'checkbox onclick ' + elName.innerHTML );
+							if ( itemItem.checked === true ) {
+
+								itemItem.elName.classList.add( classChecked );
+
+							} else {
+
+								itemItem.elName.classList.remove( classChecked );
+
+							}
+							itemItem.checked = !itemItem.checked;
+							itemItem.elName.innerHTML = getItemName( itemItem );
+
+						}
+						if ( itemItem.onclick )
 							itemItem.onclick( event );
 							
-						}
+					}
 
 				}
+				if ( itemItem.radio === true )
+					elName.classList.add( 'radio' );
+				if ( itemItem.checkbox === true )
+					elName.classList.add( 'checkbox' );
+				elName.innerHTML = getItemName( itemItem );
 
-				elName.innerHTML = name;
+				if ( itemItem.checked === true )
+					elName.classList.add( classChecked );
+
 				elDropdownChild.appendChild( elName );
+				if ( typeof itemItem !== "string")
+					itemItem.elName = elName;
 
 			} );
 
@@ -380,17 +397,6 @@ export function create( arrayMenu, options ) {
 
 						} );
 						break;
-/*
-					case Object:
-						setTimeout( function () {
-
-							elDropdownChild.style.display = 'block';
-							elDropdownChild.style.left = ( elMenuButton.offsetWidth - elDropdownChild.clientWidth ) + 'px';
-							elDropdownChild.style.display = 'none';
-
-						}, 0 );
-						break;
-*/
 					case undefined:
 						setTimeout( function () {
 
@@ -407,6 +413,9 @@ export function create( arrayMenu, options ) {
 
 		}
 
-		elMenu.appendChild( elSpan );
+		elMenu.appendChild( elMenuButton );
+
 	} );
+	return elMenu;
+
 }

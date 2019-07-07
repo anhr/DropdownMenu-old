@@ -10,3 +10,6 @@ d:
 cd "D:\WebFeatures\GoogleSite\nodejs\DropdownMenu"
 npm install
 npm run build
+
+Внимание!!! Надо еще собрать cd "D:\WebFeatures\GoogleSite\nodejs\menuPlay"
+а то внесенные измененя не появятся в браузере в меню, корое было создано с помошью menuPlay

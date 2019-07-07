@@ -29,3 +29,16 @@
         .dropdown-childGradient nobr:hover {
             background: linear-gradient(to top, #CCCCCC, white);
         }
+        .dropdown-childGradient nobr.radio {
+            background: linear-gradient(to top, #CCCCCC, white);
+        }
+            .dropdown-childGradient nobr.radio:hover {
+                background: linear-gradient(to top, #CCCCCC, white);
+            }
+        .dropdown-childGradient nobr.checkbox {
+            background: linear-gradient(to top, #CCCCCC, white);
+        }
+
+            .dropdown-childGradient nobr.checkbox:hover {
+                background: linear-gradient(to top, #CCCCCC, white);
+            }

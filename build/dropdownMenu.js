@@ -322,7 +322,6 @@ function create(arrayMenu, options) {
 	options.elParent.appendChild(elMenu);
 	arrayMenu.forEach(function (menuItem) {
 		var dropdownChild = 'dropdown-child';
-		var elSpan = document.createElement('span');
 		function moveUpLeft(drop) {
 			setTimeout(function () {
 				var display = elDropdownChild.style.display;
@@ -335,44 +334,77 @@ function create(arrayMenu, options) {
 		var elMenuButton = document.createElement('span');
 		elMenuButton.className = 'menuButton' + (options.decorations === undefined ? '' : ' menuButton' + options.decorations);
 		if (menuItem.style !== undefined) elMenuButton.style.cssText = menuItem.style;
+		if (menuItem.radio !== undefined) elMenuButton.style.cssText = menuItem.style;
 		if (menuItem.onclick !== undefined) elMenuButton.onclick = menuItem.onclick;
 		if (menuItem.id !== undefined) elMenuButton.id = menuItem.id;
-		elSpan.appendChild(elMenuButton);
 		var name;
 		if (typeof menuItem === 'string') name = menuItem;else {
 			name = menuItem.name;
 			if (menuItem.id) elMenuButton.id = menuItem.id;
 			if (menuItem.title) elMenuButton.title = menuItem.title;
 		}
-		var elName = document.createElement('span');
 		switch (typeof name) {
 			case "object":
-				elName.appendChild(name);
+				elMenuButton.appendChild(name);
 				break;
 			case "string":
 			case "undefined":
-				elName.innerHTML = name;
+				elMenuButton.innerHTML = name;
 				break;
 			default:
 				console.error('Invalid typeof name: ' + typeof name);
 		}
-		elMenuButton.appendChild(elName);
 		if (menuItem.items) {
 			var elDropdownChild = document.createElement('span');
 			elDropdownChild.className = dropdownChild + ' ' + dropdownChild + (options.decorations === undefined ? 'Default' : options.decorations);
 			elDropdownChild.title = '';
 			elMenuButton.appendChild(elDropdownChild);
 			menuItem.items.forEach(function (itemItem) {
-				var elName = document.createElement('nobr');
+				var elName = document.createElement('nobr'),
+				    classChecked = 'checked';
+				function getItemName(item) {
+					var str = typeof item === 'string' ? item : item.radio === true ? (item.checked ? '◉' : '◎') + ' ' + item.name : item.checkbox === true ? (item.checked ? '☑' : '☐') + ' ' + item.name : item.name;
+					return str;
+				}
+				function getElementFromEvent(event) {
+					if (!event) event = window.event;
+					return event.target || event.srcElement;
+				}
 				var name;
 				if (typeof itemItem === 'string') name = itemItem;else {
 					name = itemItem.name;
-					if (itemItem.onclick) elName.onclick = function (event) {
-						itemItem.onclick(event);
+					elName.onclick = function (event) {
+						if (itemItem.radio === true) {
+							menuItem.items.forEach(function (item) {
+								if (item.radio === true) {
+									if (getElementFromEvent(event) === item.elName) {
+										item.checked = true;
+										item.elName.classList.add(classChecked);
+									} else {
+										item.checked = false;
+										item.elName.classList.remove(classChecked);
+									}
+									item.elName.innerHTML = getItemName(item);
+								}
+							});
+						} else if (itemItem.checkbox === true) {
+							if (itemItem.checked === true) {
+								itemItem.elName.classList.add(classChecked);
+							} else {
+								itemItem.elName.classList.remove(classChecked);
+							}
+							itemItem.checked = !itemItem.checked;
+							itemItem.elName.innerHTML = getItemName(itemItem);
+						}
+						if (itemItem.onclick) itemItem.onclick(event);
 					};
 				}
-				elName.innerHTML = name;
+				if (itemItem.radio === true) elName.classList.add('radio');
+				if (itemItem.checkbox === true) elName.classList.add('checkbox');
+				elName.innerHTML = getItemName(itemItem);
+				if (itemItem.checked === true) elName.classList.add(classChecked);
 				elDropdownChild.appendChild(elName);
+				if (typeof itemItem !== "string") itemItem.elName = elName;
 			});
 			if (typeof menuItem.drop === 'object') {
 				moveUpLeft(menuItem.drop);
@@ -399,8 +431,9 @@ function create(arrayMenu, options) {
 				}
 			}
 		}
-		elMenu.appendChild(elSpan);
+		elMenu.appendChild(elMenuButton);
 	});
+	return elMenu;
 }
 
 exports.create = create;
