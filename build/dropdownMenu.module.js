@@ -192,7 +192,26 @@ function sync$1(src, options) {
 		options.onerror('duplicate downloading of the ' + src + ' file');
 		return;
 	}
-	loadScriptBase(function (script) {
+	if (src instanceof Array) {
+		var error,
+		    optionsItem = {
+			appendTo: options.appendTo,
+			tag: options.tag,
+			onerror: function (str) {
+				options.onerror(str);
+				error = str;
+			}
+		};
+		for (var i = 0; i < src.length; i++) {
+			var item = src[i];
+			loadScriptBase(function (script) {
+				script.setAttribute("id", item);
+				script.innerHTML = sync(item, optionsItem);
+			}, optionsItem);
+			if (error !== undefined) break;
+		}
+		if (error === undefined) options.onload();
+	} else loadScriptBase(function (script) {
 		script.setAttribute("id", src);
 		script.innerHTML = sync(src, options);
 	}, options);
@@ -286,9 +305,9 @@ var loadScript = {
 
 var optionsStyle = {
 	tag: 'style'
-};loadScript.sync('../../styles/menu.css', optionsStyle);
-loadScript.sync('../../styles/Decorations/transparent.css', optionsStyle);
-loadScript.sync('../../styles/Decorations/gradient.css', optionsStyle);
+};loadScript.sync('https://raw.githack.com/anhr/DropdownMenu/master/styles/menu.css', optionsStyle);
+loadScript.sync('https://raw.githack.com/anhr/DropdownMenu/master/styles/Decorations/transparent.css', optionsStyle);
+loadScript.sync('https://raw.githack.com/anhr/DropdownMenu/master/styles/Decorations/gradient.css', optionsStyle);
 function create(arrayMenu, options) {
 	options = options || {};
 	options.elParent = options.elParent || document.querySelector('body');

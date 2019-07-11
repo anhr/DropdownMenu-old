@@ -30,7 +30,6 @@
   </PropertyGroup>
   <ItemGroup>
     <Content Include="Examples\html\custom.css" />
-    <Content Include="Examples\html\gui.css" />
     <Content Include="Examples\html\index.html" />
     <Content Include="Examples\html\indexDebug.html">
       <SubType>Code</SubType>
@@ -55,6 +54,7 @@
     <Content Include="rollup.config.min.js" />
     <Content Include="styles\Decorations\gradient.css" />
     <Content Include="styles\Decorations\transparent.css" />
+    <Content Include="styles\gui.css" />
     <Content Include="styles\menu.css" />
     <Content Include="URL.txt" />
   </ItemGroup>

@@ -19,9 +19,11 @@
 	<!--<script src="https://raw.githack.com/anhr/menuPlay/master/build/menuPlay.min.js"></script>-->
 
 	<!--Three.js-->
+	<!--
 	<script src="https://raw.githack.com/anhr/three.js/dev/build/three.js"></script>
 	<script src="https://raw.githack.com/anhr/three.js/dev/examples/js/WebGL.js"></script>
 	<script src="https://raw.githack.com/anhr/three.js/dev/examples/js/controls/OrbitControls.js"></script>
+	-->
 
 	<!--A lightweight graphical user interface for changing variables in JavaScript. https://github.com/dataarts/dat.gui -->
 	<!--В настоящее время в
@@ -34,13 +36,15 @@
 		D:\My documents\MyProjects\webgl\three.js\GitHub\three.js\examples\js\libs
 		и обновляю ветку dev three.js github
 		-->
-	<script src="https://raw.githack.com/anhr/three.js/dev/examples/js/libs/dat.gui.js"></script>
+	<!--<script src="https://raw.githack.com/anhr/three.js/dev/examples/js/libs/dat.gui.js"></script>-->
 
-	<script src="https://raw.githack.com/anhr/three.js/dev/examples/js/effects/StereoEffect.js"></script>
+	<!--<script src="https://raw.githack.com/anhr/three.js/dev/examples/js/effects/StereoEffect.js"></script>-->
 
 	<!--Cube-->
+	<!--
 	<script src="https://raw.githack.com/anhr/three.js/dev/examples/js/geometries/ConvexGeometry.js"></script>
 	<script src="https://raw.githack.com/anhr/three.js/dev/examples/js/QuickHull.js"></script>
+	-->
 
 	<!--Attention! Load controllerPlay.js file after StereoEffect.js if you want to localise controllerPlay buttons -->
 	<!--<script src="https://raw.githack.com/anhr/controllerPlay/master/build/controllerPlay.js"></script>-->
@@ -51,39 +55,35 @@
 	<!--For mobile device debugging-->
 	<!--<script src="../../../nodejs/dropdownMenu/build/dropdownMenu.js"></script>-->
 	<!--For desktop debugging-->
-	<script src="../../build/dropdownMenu.js"></script>
-	<!--<script src="../../build/dropdownMenu.min.js"></script>-->
+	<!--<script src="http://localhost/nodejs/dropdownMenu/build/dropdownMenu.js"></script>-->
+	<script src="../../build/dropdownMenu.min.js"></script>
 
-	<script src="../../../nodejs/menuPlay/build/menuPlay.js"></script>
-	<!--<script src="../../../nodejs/menuPlay/build/menuPlay.min.js"></script>-->
+	<script src="http://localhost/nodejs/menuPlay/build/menuPlay.js"></script>
+	<!--<script src="http://localhost/nodejs/menuPlay/build/menuPlay.min.js"></script>-->
 
 	<!--Three.js-->
-	<!--
-	<script src="../../../threejs/three.js/build/three.js"></script>
-	<script src="../../../threejs/three.js/examples/js/WebGL.js"></script>
-	<script src="../../../threejs/three.js/examples/js/controls/OrbitControls.js"></script>
-	-->
+	<script src="http://localhost/threejs/three.js/build/three.js"></script>
+	<script src="http://localhost/threejs/three.js/examples/js/WebGL.js"></script>
+	<script src="http://localhost/threejs/three.js/examples/js/controls/OrbitControls.js"></script>
 
 	<!--A lightweight graphical user interface for changing variables in JavaScript. https://github.com/dataarts/dat.gui -->
-	<!--<script src="../../../threejs/dat.gui/build/dat.gui.js"></script>-->
-	<!--<script src="../../../nodejs/datgui/build/dat.gui.js"></script>-->
-	<!--<script src="../../../threejs/three.js/examples/js/effects/StereoEffect.js"></script>-->
+	<script src="http://localhost/threejs/dat.gui/build/dat.gui.js"></script>
+
+	<script src="http://localhost/threejs/three.js/examples/js/effects/StereoEffect.js"></script>
 
 	<!--Cube-->
-	<!--
-	<script src="../../../threejs/three.js/examples/js/geometries/ConvexGeometry.js"></script>
-	<script src="../../../threejs/three.js/examples/js/QuickHull.js"></script>
-	-->
+	<script src="http://localhost/threejs/three.js/examples/js/geometries/ConvexGeometry.js"></script>
+	<script src="http://localhost/threejs/three.js/examples/js/QuickHull.js"></script>
 
 	<!--Attention! Load controllerPlay.js file after StereoEffect.js if you want to localise controllerPlay buttons -->
-	<script src="../../../nodejs/controllerPlay/build/controllerPlay.js"></script>
-	<!--<script src="../../../nodejs/controllerPlay/build/controllerPlay.min.js"></script>-->
+	<script src="http://localhost/nodejs/controllerPlay/build/controllerPlay.js"></script>
+	<!--<script src="http://localhost/nodejs/controllerPlay/build/controllerPlay.min.js"></script>-->
 
 	<!-- ============================================================================== -->
 
 	<!--Attention! Load custom.css file after dropdownMenu.js file for correctly priority of the styles-->
 	<link rel="stylesheet" href="custom.css" type="text/css">
-	<link rel="stylesheet" href="gui.css" type="text/css">
+	<link rel="stylesheet" href="http://localhost/nodejs/dropdownMenu/styles/gui.css" type="text/css">
 
 </head>
 	<body>
@@ -467,126 +467,7 @@
 					stereoEffect: stereoEffect,
 
 				} );
-/*
-			var menu = [];
-			if ( stereoEffect )
-				menu.push( {
 
-					name: '⚭',
-					title: 'Stereo effects',
-					id: 'menuButtonStereoEffects',
-					drop: 'up',
-					items: [
-
-						{
-							name: 'Mono',
-							onclick: function ( event ) {
-
-								if ( stereoEffect.setSpatialMultiplex !== undefined )
-									stereoEffect.setSpatialMultiplex( THREE.StereoEffectParameters.spatialMultiplexsIndexs.Mono );
-								else stereoEffect.options.spatialMultiplex = THREE.StereoEffectParameters.spatialMultiplexsIndexs.Mono;
-
-							}
-						},
-						{
-							name: 'Side by side',
-							onclick: function ( event ) {
-
-								if ( stereoEffect.setSpatialMultiplex !== undefined )
-									stereoEffect.setSpatialMultiplex( THREE.StereoEffectParameters.spatialMultiplexsIndexs.SbS );
-								else stereoEffect.options.spatialMultiplex = THREE.StereoEffectParameters.spatialMultiplexsIndexs.SbS;
-
-							}
-						},
-						{
-							name: 'Top and bottom',
-							onclick: function ( event ) {
-
-								if ( stereoEffect.setSpatialMultiplex !== undefined )
-									stereoEffect.setSpatialMultiplex( THREE.StereoEffectParameters.spatialMultiplexsIndexs.TaB );
-								else stereoEffect.options.spatialMultiplex = THREE.StereoEffectParameters.spatialMultiplexsIndexs.TaB;
-
-							}
-						},
-
-					],
-
-				} );
-			menu.push( {
-
-				name: controllerPlay.lang.prevSymbol,
-				title: controllerPlay.lang.prevSymbolTitle,
-				onclick: function ( event ) {
-
-					playController.prev();
-
-				}
-
-			} );
-			menu.push( {
-
-				name: controllerPlay.lang.playSymbol,
-				title: controllerPlay.lang.playTitle,
-				id: "menuButtonPlay",
-				onclick: function ( event ) {
-
-					playController.play();
-
-				}
-
-			} );
-			menu.push( {
-
-				name: controllerPlay.lang.repeat,
-				title: controllerPlay.lang.repeatOn,
-				id: "menuButtonRepeat",
-				onclick: function ( event ) {
-
-					playController.repeat();
-
-				}
-
-			} );
-			menu.push( {
-
-				name: controllerPlay.lang.nextSymbol,
-				title: controllerPlay.lang.nextSymbolTitle,
-				onclick: function ( event ) {
-
-					playController.next();
-
-				}
-
-			} );
-			menu.push( {
-
-				name: '<input type="range" min="1" max="100" value="50" class="slider" id="myRange">',
-
-			} );
-			menu.push( {
-
-				style: 'float: right;',
-				id: "menuButtonFullScreen",
-				onclick: function ( event ) {
-
-					if ( stereoEffect !== undefined )
-						stereoEffect.setFullScreen();
-					setFullScreenButton();
-
-				}
-
-			} );
-			dropdownMenu.create( menu,
-				{
-
-					elParent: elContainer,
-					canvas: elCanvas,
-					decorations: 'Transparent',
-
-				} );
-
-			setFullScreenButton();
-*/
 		}
 
 		var camera, scene, renderer, controls, stereoEffect/*, raycaster*/, cubeType = 'cube', group, playController;
@@ -738,7 +619,8 @@
 				onShowObject3D: function ( objects3DItem, index ) {
 
 					objects3DItem.visible = true;
-					menuPlay.setIndex( index );
+					if ( typeof menuPlay !== "undefined" )
+						menuPlay.setIndex( index );
 
 				},
 				onHideObject3D: function ( objects3DItem ) {
@@ -750,7 +632,8 @@
 
 					objects3DItem.material.color = colorRed;
 					objects3DItem.visible = true;
-					menuPlay.setIndex( index );
+					if ( typeof menuPlay !== "undefined" )
+						menuPlay.setIndex( index );
 
 				},
 				onRestoreObject3D: function ( objects3DItem ) {
@@ -762,6 +645,8 @@
 				onRenamePlayButton: function ( name, title ) {
 
 					var elMenuButtonPlay = document.getElementById( 'menuButtonPlay' );
+					if ( elMenuButtonPlay === null )
+						return;
 					elMenuButtonPlay.innerHTML = name;
 					elMenuButtonPlay.title = title;
 
@@ -769,6 +654,8 @@
 				onRenameRepeatButton: function ( title, color ) {
 
 					var elMenuButtonRepeat = document.getElementById( 'menuButtonRepeat' );
+					if ( elMenuButtonRepeat === null )
+						return;
 //					elMenuButtonRepeat.innerHTML = name;
 					elMenuButtonRepeat.title = title;
 

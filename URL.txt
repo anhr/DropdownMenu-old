@@ -1,6 +1,6 @@
 test page
 https://raw.githack.com/anhr/DropdownMenu/master/Examples/html/
-http://localhost/DropdownMenu/Examples/html/
+http://localhost/nodejs/DropdownMenu/Examples/html/
 -------------------------------------------
 Building menu
 
@@ -12,4 +12,4 @@ npm install
 npm run build
 
 Внимание!!! Надо еще собрать cd "D:\WebFeatures\GoogleSite\nodejs\menuPlay"
-а то внесенные измененя не появятся в браузере в меню, корое было создано с помошью menuPlay
+а то внесенные измененя не появятся в браузере в меню, которое было создано с помошью menuPlay
