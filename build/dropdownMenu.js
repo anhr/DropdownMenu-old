@@ -181,7 +181,7 @@ function sync(url, options) {
 		request.ProcessReqChange(function (myRequest) {
 			if (myRequest.processStatus200Error()) return;
 			response = myRequest.req.responseText;
-			options.onload(response);
+			options.onload(response, url);
 			return;
 		});
 	}, false
@@ -203,6 +203,9 @@ function sync$1(src, options) {
 		    optionsItem = {
 			appendTo: options.appendTo,
 			tag: options.tag,
+			onload: function (response, url) {
+				console.log('loadScript.onload: ' + url);
+			},
 			onerror: function (str) {
 				options.onerror(str);
 				error = str;
@@ -319,6 +322,7 @@ function create(arrayMenu, options) {
 	options.elParent = options.elParent || document.querySelector('body');
 	var elMenu = document.createElement('menu');
 	if (options.elParent.classList.contains("container")) elMenu.className = 'controls';
+	var timeoutControls;
 	function displayControls() {
 		elMenu.style.opacity = 1;
 		clearTimeout(timeoutControls);

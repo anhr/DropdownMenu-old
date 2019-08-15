@@ -462,7 +462,7 @@
 		function createMenu() {
 
 			if ( typeof menuPlay !== 'undefined' )
-				menuPlay.create( elContainer, elCanvas, {
+				menuPlay.create( elContainer, {
 
 					stereoEffect: stereoEffect,
 
@@ -780,31 +780,7 @@
 
 		}
 
-		var canvasMouseOver = false,
-			elControls = elContainer.querySelectorAll( '.controls' ),
-			timeoutControls;
-
-		function setFullScreenButton( fullScreen ) {
-
-			var elMenuButtonFullScreen = document.getElementById( 'menuButtonFullScreen' );
-			if ( elMenuButtonFullScreen === null )
-				return;
-
-			if ( fullScreen === undefined )
-				fullScreen = !( ( stereoEffect === undefined ) || !stereoEffect.isFullScreen() );
-			if ( fullScreen ) {
-
-				elMenuButtonFullScreen.innerHTML = '⤦';
-				elMenuButtonFullScreen.title = 'Non Full Screen';
-
-			} else {
-
-				elMenuButtonFullScreen.innerHTML = '⤢';
-				elMenuButtonFullScreen.title = 'Full Screen';
-
-			}
-
-		}
+		var timeoutControls;
 	</script>
 	</body>
 </html>

@@ -183,6 +183,7 @@ export function create( arrayMenu, options ) {
 	if ( options.elParent.classList.contains( "container" ) )
 		elMenu.className = 'controls';
 
+	var timeoutControls;
 	function displayControls() {
 
 		elMenu.style.opacity = 1;
