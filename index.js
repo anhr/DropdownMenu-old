@@ -13,7 +13,8 @@
  */
 
 //Please download https://github.com/anhr/loadScriptNodeJS into ../loadScriptNodeJS folder
-import loadScript from '../loadScriptNodeJS/loadScript.js';
+import loadScript from '../loadScriptNodeJS/master/loadScript.js';
+
 var optionsStyle = {
 
 	//style rel="stylesheet"
