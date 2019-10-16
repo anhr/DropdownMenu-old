@@ -22,13 +22,13 @@ var optionsStyle = {
 
 }
 //Attention! Load menu.css file before other css files for correctly priority of the styles
+loadScript.sync( '/anhr/DropdownMenu/master/styles/menu.css', optionsStyle );
+loadScript.sync( '/anhr/DropdownMenu/master/styles/Decorations/transparent.css', optionsStyle );
+loadScript.sync( '/anhr/DropdownMenu/master/styles/Decorations/gradient.css', optionsStyle );
+/*
 loadScript.sync( 'https://raw.githack.com/anhr/DropdownMenu/master/styles/menu.css', optionsStyle );
 loadScript.sync( 'https://raw.githack.com/anhr/DropdownMenu/master/styles/Decorations/transparent.css', optionsStyle );
 loadScript.sync( 'https://raw.githack.com/anhr/DropdownMenu/master/styles/Decorations/gradient.css', optionsStyle );
-/*
-loadScript.sync( '../../../../nodejs/DropdownMenu/styles/menu.css', optionsStyle );
-loadScript.sync( '../../../../nodejs/DropdownMenu/styles/Decorations/transparent.css', optionsStyle );
-loadScript.sync( '../../../../nodejs/DropdownMenu/styles/Decorations/gradient.css', optionsStyle );
 */
 
 /**

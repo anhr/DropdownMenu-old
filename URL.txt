@@ -1,6 +1,6 @@
 test page
 https://raw.githack.com/anhr/DropdownMenu/master/Examples/html/
-http://localhost/nodejs/DropdownMenu/Examples/html/
+http://localhost/anhr/DropdownMenu/master/Examples/html/
 -------------------------------------------
 Building menu
 
