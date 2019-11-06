@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -23,9 +23,11 @@
 	<script src="/anhr/three.js/dev/build/three.js"></script>
 	<script src="/anhr/three.js/dev/examples/js/WebGL.js"></script>
 	<script src="/anhr/three.js/dev/examples/js/controls/OrbitControls.js"></script>
+	<script src="/anhr/three.js/dev/examples/js/math/ConvexHull.js"></script><!--for cube-->
 
 	<!--A lightweight graphical user interface for changing variables in JavaScript. https://github.com/dataarts/dat.gui -->
 	<script src="/anhr/dat.gui/CustomController/build/dat.gui.js"></script>
+	<script src="/anhr/commonNodeJS/master/dat.js"></script>
 
 	<script src="/anhr/three.js/dev/examples/js/effects/StereoEffect.js"></script>
 
@@ -404,25 +406,40 @@
 	</div>
 	<script>
 
+		/*
 		if ( WEBGL.isWebGLAvailable() === false ) {
 
 			document.body.appendChild( WEBGL.getWebGLErrorMessage() );
 			alert( WEBGL.getWebGLErrorMessage().innerHTML );
 
 		}
-
+		*/
 		var elContainer = document.getElementById( "containerDSE" ),
 			elCanvas = elContainer.querySelector( 'canvas' );
 
 
 		function createMenu() {
 
-			if ( typeof menuPlay !== 'undefined' )
+			if ( typeof menuPlay !== 'undefined' ) {
+
+				stereoEffect.options = { spatialMultiplex: THREE.StereoEffectParameters.spatialMultiplexsIndexs.Mono }
 				menuPlay.create( elContainer, {
 
-					stereoEffect: stereoEffect,
+					stereoEffect: stereoEffect === undefined ? stereoEffect :
+						{
+							stereoEffect: stereoEffect,
+							spatialMultiplexsIndexs: THREE.StereoEffectParameters.spatialMultiplexsIndexs
+						},
+					onFullScreenToggle: function () {
+
+						return { renderer: renderer, camera: camera };
+//						return rendererSizeDefault.onFullScreenToggle();
+
+					},
 
 				} );
+
+			}
 
 		}
 
@@ -568,6 +585,7 @@
 			//Thanks to https://stackoverflow.com/questions/41404643/place-dat-gui-strictly-inside-three-js-scene-without-iframe
 			document.getElementById( 'my-gui-container' ).appendChild( gui.domElement );
 
+			/*
 			//PlayController
 			var colorRed = new THREE.Color( 0xff0000 );
 			playController = controllerPlay.create( group, {
@@ -619,6 +637,7 @@
 
 			} );
 			gui.add( playController );
+			*/
 
 			//Points
 
