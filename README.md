@@ -1,4 +1,7 @@
 ﻿# DropdownMenu
+
+**Deprecated! Please go to [DropdownMenu](https://github.com/anhr/commonNodeJS/tree/master/DropdownMenu).**
+
 node.js version of the DropdownMenu.
 
 Adds a dropdown menu into your webpage. [Example.](https://raw.githack.com/anhr/DropdownMenu/master/Examples/html/)

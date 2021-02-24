@@ -29,7 +29,8 @@
 	<script src="/anhr/dat.gui/CustomController/build/dat.gui.js"></script>
 	<script src="/anhr/commonNodeJS/master/dat.js"></script>
 
-	<script src="/anhr/three.js/dev/examples/js/effects/StereoEffect.js"></script>
+	<!--<script src="/anhr/three.js/dev/examples/js/effects/StereoEffect.js"></script>-->
+	<!--<script src="../../../../commonNodeJS/master/StereoEffect/StereoEffect.js"></script>-->
 
 	<!--Cube-->
 	<script src="/anhr/three.js/dev/examples/js/geometries/ConvexGeometry.js"></script>
@@ -404,8 +405,9 @@
 			<!--<iframe></iframe>-->
 		</div>
 	</div>
-	<script>
+	<script type="module">
 
+		import StereoEffect from "../../../../commonNodeJS/master/StereoEffect/StereoEffect.js";
 		/*
 		if ( WEBGL.isWebGLAvailable() === false ) {
 
@@ -422,13 +424,13 @@
 
 			if ( typeof menuPlay !== 'undefined' ) {
 
-				stereoEffect.options = { spatialMultiplex: THREE.StereoEffectParameters.spatialMultiplexsIndexs.Mono }
+				stereoEffect.options = { spatialMultiplex: StereoEffect.spatialMultiplexsIndexs.Mono }
 				menuPlay.create( elContainer, {
 
 					stereoEffect: stereoEffect === undefined ? stereoEffect :
 						{
 							stereoEffect: stereoEffect,
-							spatialMultiplexsIndexs: THREE.StereoEffectParameters.spatialMultiplexsIndexs
+							spatialMultiplexsIndexs: StereoEffect.spatialMultiplexsIndexs
 						},
 					onFullScreenToggle: function () {
 
@@ -512,9 +514,9 @@
 			controls.update();
 
 			//StereoEffect
-			stereoEffect = new THREE.StereoEffect( renderer, {
+			stereoEffect = new StereoEffect( THREE, renderer, {
 
-				spatialMultiplex: THREE.StereoEffectParameters.spatialMultiplexsIndexs.Mono, //.SbS,
+				spatialMultiplex: StereoEffect.spatialMultiplexsIndexs.Mono, //.SbS,
 				far: camera.far,
 				camera: camera,
 				stereoAspect: 1,
@@ -527,7 +529,8 @@
 				cookie: THREE.cookie,
 
 			} );
-			stereoEffect.options.spatialMultiplex = THREE.StereoEffectParameters.spatialMultiplexsIndexs.Mono;
+			//stereoEffect.setSize( window.innerWidth, window.innerHeight );
+			stereoEffect.options.spatialMultiplex = StereoEffect.spatialMultiplexsIndexs.Mono;
 
 			//Light
 
@@ -663,7 +666,7 @@
 
 			function addCube( cubePosition, color ) {
 
-				var cube = new THREE.Mesh( new THREE.ConvexBufferGeometry( new THREE.CubeGeometry( 0.4, 0.4, 0.4 ).vertices ),
+				var cube = new THREE.Mesh( new THREE.ConvexBufferGeometry( new THREE.BoxGeometry( 0.4, 0.4, 0.4 ).vertices ),
 					new THREE.MeshLambertMaterial( {
 						color: color,
 						/*
@@ -685,13 +688,23 @@
 			addCube( new THREE.Vector3( -1, 0, 0 ), 0xffffff );
 			addCube( new THREE.Vector3( -0.5, 0.5, -0.5 ), 'green' );
 
-			if ( ( stereoEffect !== undefined ) && ( typeof gui !== 'undefined' ) )
+			if ( ( stereoEffect !== undefined ) && ( typeof gui !== 'undefined' ) ) {
+
+				stereoEffect.gui( gui, {
+
+					//getLanguageCode: getLanguageCode,
+
+				} );
+/*
 				THREE.gui.stereoEffect( gui, stereoEffect.options, {
 
 					gui: gui,
 					stereoEffect: stereoEffect,
 
 				} );
+*/
+
+			}
 
 			window.addEventListener( 'resize', onResize, false );
 

@@ -12,8 +12,7 @@
  * http://www.apache.org/licenses/LICENSE-2.0
  */
 
-//Please download https://github.com/anhr/loadScriptNodeJS into ../loadScriptNodeJS folder
-import loadScript from '../../loadScriptNodeJS/master/loadScript.js';
+import loadScript from '../../commonNodeJS/master/loadScriptNodeJS/loadScript.js';//https://github.com/anhr/commonNodeJS/tree/master/loadScriptNodeJS
 
 var optionsStyle = {
 
